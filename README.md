@@ -1,6 +1,8 @@
 Sabrina Savenkova — Harpist Website
+
 A single-page, responsive personal website built with plain HTML, CSS, and
 JavaScript, ready to host on GitHub Pages.
+
 Files
 `index.html` — page structure and content
 `style.css` — all visual styling (colors, type, layout, responsiveness)
@@ -8,6 +10,7 @@ Files
 accordion, and the contact form
 `images/` — placeholder photos and social icons (replace these)
 `audio/`, `video/` — placeholder folders for your own media
+
 What to replace before going live
 1. Images
 Every placeholder photo lives in `images/` and is clearly marked in

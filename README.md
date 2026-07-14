@@ -44,6 +44,7 @@ const LINKS = {
 Each URL automatically applies everywhere it's used — for example,
 `biography` updates both the "Biography" link in the More menu and the
 "Read more about me" link in the About section.
+
 5. Contact form (Formspree)
 Create a form at formspree.io and copy your
 endpoint URL.
@@ -51,6 +52,7 @@ In `index.html`, find `<form id="contactForm" ... action="https://formspree.io/f
 and replace `YOUR_FORM_ID` with your real endpoint.
 The form submits asynchronously (no page reload), validates the required
 fields, and shows a success or error message beneath the Send button.
+
 6. FAQ content
 The five placeholder questions in the Questions section (`#questions` in
 `index.html`) can be edited freely — just change the text inside each

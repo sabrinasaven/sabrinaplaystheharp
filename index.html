@@ -63,7 +63,15 @@
           <li role="none"><a role="menuitem" href="#" data-link="recordings">Recordings</a></li>
           <li role="none"><a role="menuitem" href="#" data-link="gallery">Gallery</a></li>
           <li role="none"><a role="menuitem" href="#" data-link="biography">Biography</a></li>
-          <li role="none"><a role="menuitem" href="#" data-link="repertoire">Repertoire</a></li>
+          <!-- Repertoire is a downloadable PDF — script.js adds the `download` attribute automatically -->
+          <li role="none">
+            <a role="menuitem" href="#" data-link="repertoire" class="has-download">
+              Repertoire
+              <svg class="download-icon" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
+                <path d="M12 3v11.5m0 0l-4.5-4.5M12 14.5l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
         </ul>
       </li>
     </ul>
@@ -80,10 +88,12 @@
       REPLACE ME: swap the src below for your own hero photograph.
       Recommended: a wide, high-resolution image (at least 1800px wide).
       File is referenced from /images/ — drop your file in that folder.
+      A gap below the sticky header/nav is handled in style.css (.section--home)
+      so the top of your photo is never hidden behind the nav bar.
     -->
     <img
       class="hero-image"
-      src="images/hero-placeholder.JPG"
+      src="images/hero-placeholder.jpg"
       alt="Sabrina Savenkova playing the concert harp"
       width="1800" height="1200">
   </section>
@@ -94,7 +104,7 @@
   <section id="about" class="section section--split">
     <div class="split__media">
       <!-- REPLACE ME: your own portrait or performance photo -->
-      <img src="images/about-placeholder.jpg" alt="Portrait of Sabrina Savenkova" loading="lazy" width="900" height="1100">
+      <img src="images/about-placeholder.jpg" alt="Portrait of Sabrina Savenkova" loading="lazy" width="900" height="1200">
     </div>
     <div class="split__content">
       <p class="eyebrow">About</p>
@@ -119,31 +129,33 @@
     <p class="eyebrow">Listen</p>
     <h2>A Moment of Music</h2>
 
-    <div class="listen__grid">
-      <div class="listen__player">
-        <!--
-          REPLACE ME: embed your own performance video.
-          Option A — self-hosted file:
-            <video controls poster="images/video-poster.jpg">
-              <source src="video/wave.mp4" type="video/mp4">
-            </video>
-          Option B — YouTube/Vimeo embed: replace the iframe src below with your own embed URL.
-        -->
-        <div class="video-frame">
-          <iframe
-            src="https://www.youtube.com/embed/F0Du2UAS838?si=dLhUZMwhd4jxjvTt"
-            title="Sabrina Savenkova performs Wave by Antônio Carlos Jobim"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <p class="caption">“Wave” by Antônio Carlos Jobim, arranged for pedal harp.</p>
+    <div class="listen__player">
+      <!--
+        REPLACE ME: embed your own performance video.
+        Option A — self-hosted file:
+          <video controls poster="images/video-poster.jpg">
+            <source src="video/wave.mp4" type="video/mp4">
+          </video>
+        Option B — YouTube/Vimeo embed: replace the iframe src below with your own embed URL.
+      -->
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/REPLACE_WITH_VIDEO_ID"
+          title="Sabrina Savenkova performs Wave by Antônio Carlos Jobim"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
       </div>
 
-      <div class="listen__more">
+      <!--
+        "Listen to more" sits beside this caption on desktop, and drops below it
+        on mobile — see .listen__caption-row in style.css.
+      -->
+      <div class="listen__caption-row">
+        <p class="caption">“Wave” by Antônio Carlos Jobim, arranged for pedal harp.</p>
         <!-- Shares its destination with RECORDINGS in the More menu (see script.js LINKS.recordings) -->
-        <a href="#" class="text-link" data-link="recordings">Listen to more →</a>
+        <a href="#" class="text-link listen__more-link" data-link="recordings">Listen to more →</a>
       </div>
     </div>
   </section>
@@ -170,8 +182,24 @@
       </div>
 
       <!-- Shares its destination with REPERTOIRE in the More menu (see script.js LINKS.repertoire) -->
-      <a href="#" class="text-link text-link--muted" data-link="repertoire">View my full repertoire →</a>
+      <a href="#" class="text-link text-link--muted has-download" data-link="repertoire">
+        View my full repertoire →
+        <svg class="download-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false">
+          <path d="M12 3v11.5m0 0l-4.5-4.5M12 14.5l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="split__media">
+      <!-- REPLACE ME: image of a wedding or event performance -->
+      <img src="images/weddings-placeholder.jpg" alt="Sabrina Savenkova performing at a wedding" loading="lazy" width="900" height="1200">
+    </div>
 
+    <!--
+      Full-width row: spans the whole section (both grid columns) so the audio
+      player isn't squeezed into just the text column. See .weddings__full in
+      style.css (grid-column: 1 / -1).
+    -->
+    <div class="weddings__full">
       <div class="audio-block">
         <!--
           REPLACE ME: point this at your own audio file.
@@ -190,10 +218,6 @@
 
       <a href="#questions" class="text-link" id="weddingsFaqLink">Frequently Asked Questions →</a>
     </div>
-    <div class="split__media">
-      <!-- REPLACE ME: image of a wedding or event performance -->
-      <img src="images/weddings-placeholder.jpg" alt="Sabrina Savenkova performing at a wedding" loading="lazy" width="900" height="1100">
-    </div>
   </section>
 
   <!-- =====================================================================
@@ -202,7 +226,7 @@
   <section id="teaching" class="section section--split">
     <div class="split__media">
       <!-- REPLACE ME: image of a teaching session or studio -->
-      <img src="images/teaching-placeholder.jpg" alt="Sabrina Savenkova teaching a harp student" loading="lazy" width="900" height="1100">
+      <img src="images/teaching-placeholder.jpg" alt="Sabrina Savenkova teaching a harp student" loading="lazy" width="900" height="1200">
     </div>
     <div class="split__content">
       <p class="eyebrow">Teaching</p>
@@ -225,10 +249,10 @@
         <p class="contact__lead">Let's chat!</p>
         <p>
           For full bookings and enquiries, please leave me a message with as much detail as you
-          can provide. Please make sure to include a suitable email address so I can respond to you promptly.
+          can provide and I will get back to you as soon as possible!
         </p>
         <p>
-          Alternatively, please get in touch with me on +44 7305 660 180.
+          Alternatively, please get in touch with me on
           <!-- REPLACE ME: your preferred contact link, e.g. Instagram DM or a direct email -->
           <a href="#" class="text-link" data-link="instagram">Instagram</a>.
         </p>
@@ -245,7 +269,7 @@
           3. Submission is handled asynchronously in script.js (no page reload).
           =============================================================
         -->
-        <form id="contactForm" class="contact-form" action="https://formspree.io/f/mykvbzrk" method="POST" novalidate>
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
           <div class="field">
             <label for="name">Name <span aria-hidden="true">*</span></label>
             <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name">
@@ -335,6 +359,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Edit this note freely, or remove the tag entirely if you don't want it -->
+    <p class="faq-note"><em>Don't see your question here? Get in touch and I'll be happy to help.</em></p>
   </section>
 
   <!-- =====================================================================

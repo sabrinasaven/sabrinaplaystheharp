@@ -22,12 +22,22 @@
 <body>
 
 <!-- =====================================================================
-     SITE HEADER — always visible, smaller than section headings
+     SITE HEADER — always visible, smaller than section headings.
+     On mobile, the hamburger button (below) shares this row, aligned to
+     the right of the title.
      ===================================================================== -->
 <div class="site-header">
-  <span class="site-header__name">Sabrina Savenkova</span>
-  <span class="site-header__divider" aria-hidden="true">|</span>
-  <span class="site-header__role">Harpist</span>
+  <div class="site-header__brand">
+    <span class="site-header__name">Sabrina Savenkova</span>
+    <span class="site-header__divider" aria-hidden="true">|</span>
+    <span class="site-header__role">Harpist</span>
+  </div>
+
+  <!-- Mobile menu toggle — hidden on desktop; on mobile it sits in this
+       header row and controls the nav links dropdown below (#navLinks) -->
+  <button class="nav__hamburger" id="navHamburger" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </div>
 
 <!-- =====================================================================
@@ -35,11 +45,6 @@
      ===================================================================== -->
 <header class="nav-wrap">
   <nav class="nav" aria-label="Primary">
-    <!-- Mobile menu toggle (hidden on desktop) -->
-    <button class="nav__hamburger" id="navHamburger" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-
     <ul class="nav__links" id="navLinks">
       <li><a href="#home" data-section="home">Home</a></li>
       <li><a href="#about" data-section="about">About</a></li>
@@ -86,16 +91,15 @@
   <section id="home" class="section section--home">
     <!--
       REPLACE ME: swap the src below for your own hero photograph.
-      Recommended: a wide, high-resolution image (at least 1800px wide).
-      File is referenced from /images/ — drop your file in that folder.
-      A gap below the sticky header/nav is handled in style.css (.section--home)
-      so the top of your photo is never hidden behind the nav bar.
+      Use a 4:3 landscape photo (e.g. 1600x1200px or any multiple of that
+      ratio) — it displays edge-to-edge at that exact ratio on every screen
+      size, with no cropping/letterboxing and a clear gap below the nav bar.
     -->
     <img
       class="hero-image"
       src="images/hero-placeholder.JPG"
       alt="Sabrina Savenkova playing the concert harp"
-      width="1800" height="1200">
+      width="1600" height="1200">
   </section>
 
   <!-- =====================================================================
@@ -164,49 +168,56 @@
        WEDDINGS & EVENTS
        ===================================================================== -->
   <section id="weddings" class="section weddings-layout">
-    <!-- Title spans the full width on desktop, and is always first on mobile -->
+    <!-- Title: always first, both on desktop and mobile -->
     <div class="weddings__title">
       <p class="eyebrow">Weddings &amp; Events</p>
       <h2>Weddings &amp; Events</h2>
     </div>
 
-    <!-- Summary: left column on desktop, second on mobile -->
+    <!--
+      Summary wrapper: on desktop this stays intact as the left column, so
+      its contents (text, Enquire button, Repertoire link, FAQ link) simply
+      stack in that order. On mobile it "dissolves" (display: contents in
+      style.css) so each piece inside can be given its own position in the
+      Image → Text → Audio → Repertoire → FAQ → Enquire mobile order.
+    -->
     <div class="weddings__summary">
-      <p>
-        Music has the ability to transform a moment — creating atmosphere, emotion, and lasting
-        memories.
-      </p>
-      <p>
-        From weddings to corporate events and private celebrations, I tailor music to each
-        occasion. My repertoire includes Classical, Film Music, Jazz, and Contemporary pieces.
-      </p>
-      <p>Please get in touch for availability and bookings.</p>
+      <div class="weddings__text">
+        <p>
+          Music has the ability to transform a moment — creating atmosphere, emotion, and lasting
+          memories.
+        </p>
+        <p>
+          From weddings to corporate events and private celebrations, I tailor music to each
+          occasion. My repertoire includes Classical, Film Music, Jazz, and Contemporary pieces.
+        </p>
+        <p>Please get in touch for availability and bookings.</p>
+      </div>
 
       <div class="cta-row">
         <button class="btn btn--primary" id="enquireBtn">Enquire Now</button>
       </div>
 
       <!-- Shares its destination with REPERTOIRE in the More menu (see script.js LINKS.repertoire) -->
-      <a href="#" class="text-link text-link--muted has-download" data-link="repertoire">
-        View my full repertoire →
+      <a href="#" class="text-link text-link--muted has-download weddings__repertoire-link" data-link="repertoire">
+        View my full repertoire
         <svg class="download-icon" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false">
           <path d="M12 3v11.5m0 0l-4.5-4.5M12 14.5l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
+
+      <!-- Sits directly below the repertoire link on desktop (see style.css) -->
+      <a href="#questions" class="text-link" id="weddingsFaqLink">Frequently Asked Questions →</a>
     </div>
 
-    <!-- Image: right column on desktop, last on mobile -->
+    <!-- Image: right column on desktop, second on mobile (right after the title) -->
     <div class="weddings__media">
       <!-- REPLACE ME: image of a wedding or event performance -->
       <img src="images/weddings-placeholder.jpg" alt="Sabrina Savenkova performing at a wedding" loading="lazy" width="900" height="1200">
     </div>
 
-    <!--
-      Audio: spans the full width on desktop (below both the text and the
-      image), and sits third on mobile (after the summary, before the image).
-      See .weddings-layout in style.css for how each block is ordered.
-    -->
-    <div class="weddings__full">
+    <!-- Audio: spans the full width on desktop; third on mobile -->
+    <div class="weddings__audio">
       <div class="audio-block">
         <!--
           REPLACE ME: point this at your own audio file.
@@ -222,8 +233,6 @@
           <div><dt>Arranged By</dt><dd>Sabrina Savenkova</dd></div>
         </dl>
       </div>
-
-      <a href="#questions" class="text-link" id="weddingsFaqLink">Frequently Asked Questions →</a>
     </div>
   </section>
 

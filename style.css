@@ -106,17 +106,21 @@ p { margin: 0 0 1em; color: var(--ivory); }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
   padding: 0 14px;
   background: var(--ink);
   border-bottom: 1px solid rgba(201, 162, 75, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 60;
+}
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   font-family: var(--display);
   font-size: clamp(0.68rem, 3.4vw, 0.95rem);
   letter-spacing: 0.04em;
   color: var(--stone);
-  position: sticky;
-  top: 0;
-  z-index: 60;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -147,6 +151,7 @@ p { margin: 0 0 1em; color: var(--ivory); }
   display: flex;
   align-items: center;
 }
+
 
 .nav__links {
   list-style: none;
@@ -257,7 +262,7 @@ a.has-download {
   gap: 6px;
 }
 
-/* --- Mobile hamburger (hidden on desktop) --- */
+/* --- Mobile hamburger (hidden on desktop; lives in .site-header row) --- */
 .nav__hamburger {
   display: none;
   flex-direction: column;
@@ -269,7 +274,7 @@ a.has-download {
   border: none;
   cursor: pointer;
   padding: 0;
-  margin-right: 12px;
+  flex-shrink: 0;
 }
 .nav__hamburger span {
   display: block;
@@ -299,10 +304,10 @@ a.has-download {
 
 .hero-image {
   width: 100%;
-  /* Leaves the header + nav fully clear, plus a visible breathing-room gap,
-     so the top of your photo is never sitting directly under the nav bar. */
-  height: calc(100vh - var(--header-height) - var(--nav-height) - 20px);
-  min-height: 420px;
+  /* Fixed 4:3 landscape — displays edge-to-edge at this exact ratio on every
+     screen size. Use a 4:3 source photo (e.g. 1600x1200px) so cover never
+     needs to crop it. */
+  aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 
@@ -315,9 +320,14 @@ a.has-download {
 }
 
 /* =========================================================================
-   WEDDINGS & EVENTS — dedicated 4-part layout
+   WEDDINGS & EVENTS — dedicated layout
    Desktop: Title (full width) / Summary (left) + Image (right) / Audio (full width)
-   Mobile:  Title / Summary / Audio / Image  (see the 900px media query)
+            The summary column stacks: text, Enquire button, Repertoire link,
+            then FAQ link directly beneath it.
+   Mobile:  Title / Image / Text / Audio / Repertoire link / FAQ link / Enquire
+            (the .weddings__summary wrapper dissolves via display: contents
+            so each piece can be individually reordered — see the 900px
+            media query below)
    ========================================================================= */
 .weddings-layout {
   display: grid;
@@ -327,7 +337,7 @@ a.has-download {
   align-items: center;
 }
 .weddings__title,
-.weddings__full {
+.weddings__audio {
   grid-column: 1 / -1;
 }
 .weddings__title { align-self: start; }
@@ -415,7 +425,7 @@ a.has-download {
 }
 
 /* Spacing for the audio row (grid-column span is set in .weddings-layout above) */
-.weddings__full {
+.weddings__audio {
   margin-top: 8px;
 }
 
@@ -449,7 +459,7 @@ a.has-download {
 }
 .audio-meta dd { margin: 0; color: var(--ivory); font-size: 0.9rem; }
 
-#weddingsFaqLink { margin-top: 4px; }
+#weddingsFaqLink { display: block; margin-top: 10px; }
 
 /* =========================================================================
    CONTACT
@@ -614,12 +624,19 @@ a.has-download {
   #about .split__media,
   #teaching .split__media { order: 2; }
 
-  /* Weddings & Events: Title, Summary, Audio, then Image */
+  /* Weddings & Events mobile order: Title, Image, Text, Audio,
+     Repertoire link, FAQ link, Enquire button.
+     The summary wrapper "dissolves" so its children become individually
+     orderable alongside Title/Image/Audio. */
   .weddings-layout { grid-template-columns: 1fr; }
   .weddings__title { order: 1; }
-  .weddings__summary { order: 2; }
-  .weddings__full { order: 3; }
-  .weddings__media { order: 4; }
+  .weddings__media { order: 2; }
+  .weddings__summary { display: contents; }
+  .weddings__text { order: 3; }
+  .weddings__audio { order: 4; }
+  .weddings__repertoire-link { order: 5; }
+  #weddingsFaqLink { order: 6; }
+  .cta-row { order: 7; }
 
   .contact__grid { grid-template-columns: 1fr; gap: 40px; }
   .audio-meta { grid-template-columns: 1fr; }
@@ -633,7 +650,16 @@ a.has-download {
 }
 
 @media (max-width: 720px) {
+  /* Header row: hamburger sits to the right of the title, same level */
+  :root { --header-height: 48px; }
+  .site-header { justify-content: space-between; }
+
   .nav__hamburger { display: flex; }
+
+  /* The nav bar itself has nothing left in it on mobile (the hamburger now
+     lives in .site-header), so it collapses to zero height and only
+     reappears as the dropdown below when opened. */
+  .nav { height: 0; padding: 0; }
 
   .nav__links {
     position: absolute;

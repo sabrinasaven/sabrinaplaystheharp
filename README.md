@@ -9,30 +9,34 @@ accordion, and the contact form
 `images/` — placeholder photos and social icons (replace these)
 `audio/`, `video/` — placeholder folders for your own media
 What's new in this revision
-Mobile nav bar — the mobile menu now fully folds away when closed (no
-leftover padding/border strip beneath the nav bar), and expands to fit the
-remaining screen height when open, scrolling internally if the "More"
-submenu makes the list taller than the screen. Selecting a "More" item now
-also folds the menu back up.
-Weddings & Events — desktop layout — restructured into three rows:
-the title spans the full width at the top, then the summary text sits on
-the left with the photo on the right, and the audio player spans the full
-width underneath both.
-Weddings & Events — mobile order — Title → Summary → Audio → Image.
-Teaching — mobile order — Summary, then Image (matching how About
-already behaves on mobile).
+Hero image — now a fixed 4:3 landscape ratio on every screen size,
+displayed edge-to-edge with no cropping/letterboxing, and still clear of
+the nav bar. See "Images" below for the recommended photo size.
+Mobile header — the hamburger menu button now sits in the same row as
+"Sabrina Savenkova | Harpist", aligned to the right of the title.
+Weddings & Events — mobile order — now Image → Text → Audio → View my
+full repertoire → Frequently Asked Questions → Enquire Now. (The section
+title still leads, as with every other section.)
+Weddings & Events — desktop — the "Frequently Asked Questions" link now
+sits directly below "View my full repertoire" in the left-hand column,
+instead of underneath the audio player.
+Repertoire link — the arrow (→) has been removed; only the download
+icon appears next to "View my full repertoire" now.
+Color customization guide — added below, in this README.
 What to replace before going live
 1. Images
 Every placeholder photo lives in `images/` and is clearly marked in
 `index.html` with a `REPLACE ME` comment just above the `<img>` tag:
-`hero-placeholder.jpg` — Home section, full-width hero photo (landscape;
-this one is not part of the 4:3 portrait set)
-`about-placeholder.jpg` — About section portrait (portrait 4:3 ratio)
+`hero-placeholder.jpg` — Home section hero photo. Landscape 4:3 ratio
+(e.g. 1600×1200px, or any multiple of that ratio). It always displays at
+exactly this ratio, full width, with no cropping.
+`about-placeholder.jpg` — About section portrait (portrait 4:3, i.e.
+3:4 width:height — e.g. 900×1200px)
 `weddings-placeholder.jpg` — Weddings & Events photo (portrait 4:3)
 `teaching-placeholder.jpg` — Teaching photo (portrait 4:3)
-Keep your replacement photos in the same 4:3 portrait ratio (e.g. 900×1200px)
-so they display cleanly without cropping or letterboxing. Just save your own
-photo with the same filename (or update the `src`).
+Keep your replacement photos in the ratio noted above for each one so they
+display cleanly without cropping or letterboxing. Just save your own photo
+with the same filename (or update the `src`).
 2. Video (Listen section)
 Open `index.html`, find the `<iframe>` inside `#listen`, and replace
 `REPLACE_WITH_VIDEO_ID` with your own YouTube/Vimeo embed — or swap the
@@ -41,8 +45,9 @@ commented directly above it).
 3. Audio (Weddings & Events section)
 Replace `audio/wedding-sample-placeholder.mp3` with your own track, and
 update the piece name / artist / arranger text next to it. This block
-(`.weddings__full` in `index.html`) spans the full section width on desktop
-and moves to third position (after the Summary, before the Image) on mobile.
+(`.weddings__audio` in `index.html`) spans the full section width on
+desktop, and sits third on mobile (after the text, before the repertoire
+link).
 4. Links — all set in one place
 Open `script.js` and edit the `LINKS` object at the top of the file:
 ```js
@@ -61,10 +66,11 @@ Each URL automatically applies everywhere it's used — for example,
 "Read more about me" link in the About section.
 Repertoire is treated as a downloadable PDF: script.js adds a `download`
 attribute to every link pointing at it (in the More menu and the "View my
-full repertoire" link), and a small download icon appears next to both.
-Browsers only honour `download` for files on the same site, so for a real
-download prompt, add your PDF into this repository (e.g. in a `documents/`
-folder) and point `repertoire` at that path rather than an external URL.
+full repertoire" link), and a small download icon appears next to both (no
+arrow, just the icon). Browsers only honour `download` for files on the same
+site, so for a real download prompt, add your PDF into this repository (e.g.
+in a `documents/` folder) and point `repertoire` at that path rather than an
+external URL.
 5. Contact form (Formspree)
 Create a form at formspree.io and copy your
 endpoint URL.
@@ -83,11 +89,41 @@ There's also a short italic note below the accordion:
 Edit the text freely, or delete the whole `<p>` if you don't want it.
 Section layouts at a glance
 Weddings & Events
-Desktop: Title (full width) → Summary (left) + Image (right) → Audio (full width)
-Mobile: Title → Summary → Audio → Image
+Desktop: Title (full width) → Summary text + Enquire button + Repertoire
+link + FAQ link (left column) + Image (right column) → Audio (full width)
+Mobile: Title → Image → Text → Audio → Repertoire link → FAQ link →
+Enquire Now
 About / Teaching
 Desktop: Image + text side by side (unchanged)
 Mobile: text first, image below
+Changing the background and text colors
+All colors are defined once, at the very top of `style.css`, as CSS custom
+properties (variables) inside `:root`:
+```css
+:root {
+  --ink: #14161a;          /* main page background (near-black) */
+  --surface: #1d2024;      /* slightly lighter panels — audio player, form fields, More menu */
+  --ivory: #ede8df;        /* main text color (headings, body copy) */
+  --stone: #9c978c;        /* muted/secondary text (captions, labels, the FAQ note) */
+  --brass: #c9a24b;        /* accent color — links, underlines, icons, borders */
+  --brass-deep: #8b6f2e;   /* darker accent — button hover state */
+}
+```
+To change a color, edit the hex value on the right of the colon — every
+element using that variable updates automatically, site-wide. For example,
+to switch from the charcoal/brass theme to a warmer cream/burgundy theme:
+```css
+:root {
+  --ink: #faf7f2;
+  --surface: #f0e9df;
+  --ivory: #2a2420;
+  --stone: #6b6158;
+  --brass: #7a2e2e;
+  --brass-deep: #5a1f1f;
+}
+```
+You don't need to touch anything else in the file — every background,
+heading, link, button, and border pulls its color from these six variables.
 Publishing to GitHub Pages
 Push these files to a GitHub repository.
 In the repository settings, open Pages, and set the source to your

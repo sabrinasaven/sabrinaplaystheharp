@@ -83,6 +83,15 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeMoreMenu();
 });
 
+// Selecting a More-menu item also folds the mobile nav back up
+moreMenu.querySelectorAll("a").forEach((a) =>
+  a.addEventListener("click", () => {
+    closeMoreMenu();
+    navLinks.classList.remove("is-open");
+    navHamburger.setAttribute("aria-expanded", "false");
+  })
+);
+
 /* -------------------------------------------------------------------------
    4. ACTIVE NAV-LINK HIGHLIGHTING
    Watches every primary section, plus SOCIALS and QUESTIONS (which map to

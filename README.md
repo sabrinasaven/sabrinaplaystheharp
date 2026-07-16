@@ -1,8 +1,6 @@
 Sabrina Savenkova — Harpist Website
-
 A single-page, responsive personal website built with plain HTML, CSS, and
 JavaScript, ready to host on GitHub Pages.
-
 Files
 `index.html` — page structure and content
 `style.css` — all visual styling (colors, type, layout, responsiveness)
@@ -10,34 +8,31 @@ Files
 accordion, and the contact form
 `images/` — placeholder photos and social icons (replace these)
 `audio/`, `video/` — placeholder folders for your own media
-
 What's new in this revision
-Hero image — now a fixed 4:3 landscape ratio on every screen size,
-displayed edge-to-edge with no cropping/letterboxing, and still clear of
-the nav bar. See "Images" below for the recommended photo size.
-Mobile header — the hamburger menu button now sits in the same row as
+Hero image (mobile fix) — fixed a bug where the hero image had visible
+gaps on the left/right on mobile and looked cropped. The cause was a
+mobile CSS rule unintentionally re-adding side padding to the hero
+section; it's now excluded from that rule, so the hero is always
+edge-to-edge. Also switched to `object-fit: contain` so the photo is
+never cropped, even if it isn't pixel-exact 4:3.
+Weddings & Events — mobile order — updated to Image → Text → View my
+full repertoire → Audio → Enquire Now → Frequently Asked Questions, with
+a tighter gap specifically between Enquire Now and the FAQ link.
+Previously
+Mobile header — the hamburger menu button sits in the same row as
 "Sabrina Savenkova | Harpist", aligned to the right of the title.
-
-Weddings & Events — mobile order — now Image → Text → Audio → View my
-full repertoire → Frequently Asked Questions → Enquire Now. (The section
-title still leads, as with every other section.)
-
-Weddings & Events — desktop — the "Frequently Asked Questions" link now
-sits directly below "View my full repertoire" in the left-hand column,
-instead of underneath the audio player.
-
+Weddings & Events — desktop — the "Frequently Asked Questions" link
+sits directly below "View my full repertoire" in the left-hand column.
 Repertoire link — the arrow (→) has been removed; only the download
 icon appears next to "View my full repertoire" now.
-
-Color customization guide — added below, in this README.
-
+Color customization guide — see below.
 What to replace before going live
 1. Images
 Every placeholder photo lives in `images/` and is clearly marked in
 `index.html` with a `REPLACE ME` comment just above the `<img>` tag:
 `hero-placeholder.jpg` — Home section hero photo. Landscape 4:3 ratio
 (e.g. 1600×1200px, or any multiple of that ratio). It always displays at
-exactly this ratio, full width, with no cropping.
+exactly this ratio, full width, edge-to-edge, and is never cropped.
 `about-placeholder.jpg` — About section portrait (portrait 4:3, i.e.
 3:4 width:height — e.g. 900×1200px)
 `weddings-placeholder.jpg` — Weddings & Events photo (portrait 4:3)
@@ -54,8 +49,8 @@ commented directly above it).
 Replace `audio/wedding-sample-placeholder.mp3` with your own track, and
 update the piece name / artist / arranger text next to it. This block
 (`.weddings__audio` in `index.html`) spans the full section width on
-desktop, and sits third on mobile (after the text, before the repertoire
-link).
+desktop, and sits fifth on mobile (after the repertoire link, before
+Enquire Now).
 4. Links — all set in one place
 Open `script.js` and edit the `LINKS` object at the top of the file:
 ```js
@@ -95,17 +90,15 @@ There's also a short italic note below the accordion:
 <p class="faq-note"><em>Don't see your question here? Get in touch and I'll be happy to help.</em></p>
 ```
 Edit the text freely, or delete the whole `<p>` if you don't want it.
-
 Section layouts at a glance
 Weddings & Events
 Desktop: Title (full width) → Summary text + Enquire button + Repertoire
 link + FAQ link (left column) + Image (right column) → Audio (full width)
-Mobile: Title → Image → Text → Audio → Repertoire link → FAQ link →
-Enquire Now
+Mobile: Title → Image → Text → Repertoire link → Audio → Enquire Now →
+FAQ link
 About / Teaching
 Desktop: Image + text side by side (unchanged)
 Mobile: text first, image below
-
 Changing the background and text colors
 All colors are defined once, at the very top of `style.css`, as CSS custom
 properties (variables) inside `:root`:
@@ -134,10 +127,8 @@ to switch from the charcoal/brass theme to a warmer cream/burgundy theme:
 ```
 You don't need to touch anything else in the file — every background,
 heading, link, button, and border pulls its color from these six variables.
-
 Publishing to GitHub Pages
 Push these files to a GitHub repository.
 In the repository settings, open Pages, and set the source to your
 main branch (root folder).
-
 Your site will be published at `https://<your-username>.github.io/<repo-name>/`.

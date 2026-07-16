@@ -306,18 +306,34 @@ a.has-download {
   object-fit: cover;
 }
 
-/* Split (image + text) sections, used for About / Weddings / Teaching */
+/* Split (image + text) sections, used for About / Teaching */
 .section--split {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   gap: 64px;
   align-items: center;
 }
-.section--reverse { grid-template-columns: 1.1fr 0.9fr; }
-.section--reverse .split__content { order: 1; }
-.section--reverse .split__media { order: 2; }
 
-.split__media img {
+/* =========================================================================
+   WEDDINGS & EVENTS — dedicated 4-part layout
+   Desktop: Title (full width) / Summary (left) + Image (right) / Audio (full width)
+   Mobile:  Title / Summary / Audio / Image  (see the 900px media query)
+   ========================================================================= */
+.weddings-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  column-gap: 64px;
+  row-gap: 32px;
+  align-items: center;
+}
+.weddings__title,
+.weddings__full {
+  grid-column: 1 / -1;
+}
+.weddings__title { align-self: start; }
+
+.split__media img,
+.weddings__media img {
   width: 100%;
   height: auto;
   /* Your photos are portrait 4:3 (3:4 width:height) — this just reflects
@@ -398,10 +414,9 @@ a.has-download {
   outline-offset: 3px;
 }
 
-/* Full-width row below the Weddings image + text grid */
+/* Spacing for the audio row (grid-column span is set in .weddings-layout above) */
 .weddings__full {
-  grid-column: 1 / -1;
-  margin-top: 24px;
+  margin-top: 8px;
 }
 
 /* --- Audio block (Weddings) --- */
@@ -588,17 +603,23 @@ a.has-download {
    RESPONSIVE
    ========================================================================= */
 @media (max-width: 900px) {
-  .section--split,
-  .section--reverse {
+  .section--split {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  .section--reverse .split__content { order: 2; }
-  .section--reverse .split__media { order: 1; }
 
-  /* ONLY the About section: image goes below the text on mobile */
-  #about .split__content { order: 1; }
-  #about .split__media { order: 2; }
+  /* About and Teaching: image goes below the text on mobile */
+  #about .split__content,
+  #teaching .split__content { order: 1; }
+  #about .split__media,
+  #teaching .split__media { order: 2; }
+
+  /* Weddings & Events: Title, Summary, Audio, then Image */
+  .weddings-layout { grid-template-columns: 1fr; }
+  .weddings__title { order: 1; }
+  .weddings__summary { order: 2; }
+  .weddings__full { order: 3; }
+  .weddings__media { order: 4; }
 
   .contact__grid { grid-template-columns: 1fr; gap: 40px; }
   .audio-meta { grid-template-columns: 1fr; }
@@ -622,14 +643,21 @@ a.has-download {
     flex-direction: column;
     align-items: flex-start;
     background: var(--surface);
-    border-bottom: 1px solid rgba(201, 162, 75, 0.2);
-    padding: 8px 24px 20px;
+    padding: 0 24px;
     gap: 4px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s var(--ease);
+    transition: max-height 0.3s var(--ease), padding 0.3s var(--ease);
   }
-  .nav__links.is-open { max-height: 480px; }
+  .nav__links.is-open {
+    /* Fits whatever space is left below the header + nav, and scrolls
+       internally if the More submenu makes the list taller than that. */
+    max-height: calc(100vh - var(--header-height) - var(--nav-height));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 24px 20px;
+    border-bottom: 1px solid rgba(201, 162, 75, 0.2);
+  }
   .nav__links > li { width: 100%; }
   .nav__links a, .nav__more-btn { width: 100%; padding: 12px 2px; }
 

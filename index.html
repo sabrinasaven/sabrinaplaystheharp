@@ -163,10 +163,15 @@
   <!-- =====================================================================
        WEDDINGS & EVENTS
        ===================================================================== -->
-  <section id="weddings" class="section section--split section--reverse">
-    <div class="split__content">
+  <section id="weddings" class="section weddings-layout">
+    <!-- Title spans the full width on desktop, and is always first on mobile -->
+    <div class="weddings__title">
       <p class="eyebrow">Weddings &amp; Events</p>
       <h2>Weddings &amp; Events</h2>
+    </div>
+
+    <!-- Summary: left column on desktop, second on mobile -->
+    <div class="weddings__summary">
       <p>
         Music has the ability to transform a moment — creating atmosphere, emotion, and lasting
         memories.
@@ -189,15 +194,17 @@
         </svg>
       </a>
     </div>
-    <div class="split__media">
+
+    <!-- Image: right column on desktop, last on mobile -->
+    <div class="weddings__media">
       <!-- REPLACE ME: image of a wedding or event performance -->
       <img src="images/weddings-placeholder.jpg" alt="Sabrina Savenkova performing at a wedding" loading="lazy" width="900" height="1200">
     </div>
 
     <!--
-      Full-width row: spans the whole section (both grid columns) so the audio
-      player isn't squeezed into just the text column. See .weddings__full in
-      style.css (grid-column: 1 / -1).
+      Audio: spans the full width on desktop (below both the text and the
+      image), and sits third on mobile (after the summary, before the image).
+      See .weddings-layout in style.css for how each block is ordered.
     -->
     <div class="weddings__full">
       <div class="audio-block">

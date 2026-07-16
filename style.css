@@ -305,10 +305,12 @@ a.has-download {
 .hero-image {
   width: 100%;
   /* Fixed 4:3 landscape — displays edge-to-edge at this exact ratio on every
-     screen size. Use a 4:3 source photo (e.g. 1600x1200px) so cover never
-     needs to crop it. */
+     screen size. object-fit: contain guarantees the photo is never cropped;
+     use a 4:3 source photo (e.g. 1600x1200px) so it also fills the frame
+     completely with no letterboxing. */
   aspect-ratio: 4 / 3;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--ink);
 }
 
 /* Split (image + text) sections, used for About / Teaching */
@@ -324,7 +326,7 @@ a.has-download {
    Desktop: Title (full width) / Summary (left) + Image (right) / Audio (full width)
             The summary column stacks: text, Enquire button, Repertoire link,
             then FAQ link directly beneath it.
-   Mobile:  Title / Image / Text / Audio / Repertoire link / FAQ link / Enquire
+   Mobile:  Title / Image / Text / Repertoire link / Audio / Enquire / FAQ link
             (the .weddings__summary wrapper dissolves via display: contents
             so each piece can be individually reordered — see the 900px
             media query below)
@@ -624,8 +626,8 @@ a.has-download {
   #about .split__media,
   #teaching .split__media { order: 2; }
 
-  /* Weddings & Events mobile order: Title, Image, Text, Audio,
-     Repertoire link, FAQ link, Enquire button.
+  /* Weddings & Events mobile order: Title, Image, Text, Repertoire link,
+     Audio, Enquire button, FAQ link.
      The summary wrapper "dissolves" so its children become individually
      orderable alongside Title/Image/Audio. */
   .weddings-layout { grid-template-columns: 1fr; }
@@ -633,10 +635,15 @@ a.has-download {
   .weddings__media { order: 2; }
   .weddings__summary { display: contents; }
   .weddings__text { order: 3; }
-  .weddings__audio { order: 4; }
-  .weddings__repertoire-link { order: 5; }
-  #weddingsFaqLink { order: 6; }
-  .cta-row { order: 7; }
+  .weddings__repertoire-link { order: 4; }
+  .weddings__audio { order: 5; }
+  .cta-row { order: 6; }
+  #weddingsFaqLink {
+    order: 7;
+    /* Pull tighter to the Enquire button above it than the grid's usual
+       row-gap would otherwise leave. */
+    margin-top: -20px;
+  }
 
   .contact__grid { grid-template-columns: 1fr; gap: 40px; }
   .audio-meta { grid-template-columns: 1fr; }
@@ -701,13 +708,13 @@ a.has-download {
   }
   .nav__more-menu.is-open { display: block; }
 
-  .section { padding: 64px 20px; }
+  .section:not(.section--home) { padding: 64px 20px; }
   .socials__row { gap: 28px; }
 }
 
 @media (max-width: 480px) {
   .btn { width: 100%; text-align: center; }
-  .section { padding: 48px 18px; }
+  .section:not(.section--home) { padding: 48px 18px; }
   h2 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
   .contact__lead { font-size: 1.2rem; }
 }

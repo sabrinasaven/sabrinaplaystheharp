@@ -1,6 +1,8 @@
 Sabrina Savenkova — Harpist Website
+
 A single-page, responsive personal website built with plain HTML, CSS, and
 JavaScript, ready to host on GitHub Pages.
+
 Files
 `index.html` — page structure and content
 `style.css` — all visual styling (colors, type, layout, responsiveness)
@@ -8,21 +10,27 @@ Files
 accordion, and the contact form
 `images/` — placeholder photos and social icons (replace these)
 `audio/`, `video/` — placeholder folders for your own media
+
 What's new in this revision
 Hero image — now a fixed 4:3 landscape ratio on every screen size,
 displayed edge-to-edge with no cropping/letterboxing, and still clear of
 the nav bar. See "Images" below for the recommended photo size.
 Mobile header — the hamburger menu button now sits in the same row as
 "Sabrina Savenkova | Harpist", aligned to the right of the title.
+
 Weddings & Events — mobile order — now Image → Text → Audio → View my
 full repertoire → Frequently Asked Questions → Enquire Now. (The section
 title still leads, as with every other section.)
+
 Weddings & Events — desktop — the "Frequently Asked Questions" link now
 sits directly below "View my full repertoire" in the left-hand column,
 instead of underneath the audio player.
+
 Repertoire link — the arrow (→) has been removed; only the download
 icon appears next to "View my full repertoire" now.
+
 Color customization guide — added below, in this README.
+
 What to replace before going live
 1. Images
 Every placeholder photo lives in `images/` and is clearly marked in
@@ -87,6 +95,7 @@ There's also a short italic note below the accordion:
 <p class="faq-note"><em>Don't see your question here? Get in touch and I'll be happy to help.</em></p>
 ```
 Edit the text freely, or delete the whole `<p>` if you don't want it.
+
 Section layouts at a glance
 Weddings & Events
 Desktop: Title (full width) → Summary text + Enquire button + Repertoire
@@ -96,6 +105,7 @@ Enquire Now
 About / Teaching
 Desktop: Image + text side by side (unchanged)
 Mobile: text first, image below
+
 Changing the background and text colors
 All colors are defined once, at the very top of `style.css`, as CSS custom
 properties (variables) inside `:root`:
@@ -124,8 +134,10 @@ to switch from the charcoal/brass theme to a warmer cream/burgundy theme:
 ```
 You don't need to touch anything else in the file — every background,
 heading, link, button, and border pulls its color from these six variables.
+
 Publishing to GitHub Pages
 Push these files to a GitHub repository.
 In the repository settings, open Pages, and set the source to your
 main branch (root folder).
+
 Your site will be published at `https://<your-username>.github.io/<repo-name>/`.

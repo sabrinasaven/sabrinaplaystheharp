@@ -298,7 +298,7 @@ a.has-download {
 
 .section--home {
   max-width: none;
-  padding: 20px 0 0;
+  padding: 0;
   background: var(--ink);
 }
 
@@ -629,19 +629,30 @@ a.has-download {
   /* Weddings & Events mobile order: Title, Image, Text, Repertoire link,
      Audio, Enquire button, FAQ link.
      The summary wrapper "dissolves" so its children become individually
-     orderable alongside Title/Image/Audio. */
+     orderable alongside Title/Image/Audio. Negative margins below cancel
+     out some or all of the grid's 32px row-gap for specific transitions
+     that need to read as one tight group. */
   .weddings-layout { grid-template-columns: 1fr; }
   .weddings__title { order: 1; }
   .weddings__media { order: 2; }
   .weddings__summary { display: contents; }
   .weddings__text { order: 3; }
-  .weddings__repertoire-link { order: 4; }
-  .weddings__audio { order: 5; }
-  .cta-row { order: 6; }
+  .weddings__repertoire-link {
+    order: 4;
+    /* Directly on the next line after the text, no gap */
+    margin-top: -32px;
+  }
+  .weddings__audio {
+    order: 5;
+  }
+  .cta-row {
+    order: 6;
+    /* Closer to the audio box above it */
+    margin-top: -20px;
+  }
   #weddingsFaqLink {
     order: 7;
-    /* Pull tighter to the Enquire button above it than the grid's usual
-       row-gap would otherwise leave. */
+    /* Closer to the Enquire button / audio box above it */
     margin-top: -20px;
   }
 

@@ -30,7 +30,7 @@ What to replace before going live
 1. Images
 Every placeholder photo lives in `images/` and is clearly marked in
 `index.html` with a `REPLACE ME` comment just above the `<img>` tag:
-`hero-placeholder.jpg` — Home section hero photo. Landscape 4:3 ratio
+`hero-placeholder.JPG` — Home section hero photo. Landscape 4:3 ratio
 (e.g. 1600×1200px, or any multiple of that ratio). It always displays at
 exactly this ratio, full width, edge-to-edge, and is never cropped.
 `about-placeholder.jpg` — About section portrait (portrait 4:3, i.e.

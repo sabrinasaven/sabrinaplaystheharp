@@ -1,6 +1,8 @@
 Sabrina Savenkova — Harpist Website
+
 A single-page, responsive personal website built with plain HTML, CSS, and
 JavaScript, ready to host on GitHub Pages.
+
 Files
 `index.html` — page structure and content
 `style.css` — all visual styling (colors, type, layout, responsiveness)
@@ -8,6 +10,7 @@ Files
 accordion, and the contact form
 `images/` — placeholder photos and social icons (replace these)
 `audio/`, `video/` — placeholder folders for your own media
+
 What's new in this revision
 Hero image (mobile fix) — fixed a bug where the hero image had visible
 gaps on the left/right on mobile and looked cropped. The cause was a
@@ -26,6 +29,7 @@ sits directly below "View my full repertoire" in the left-hand column.
 Repertoire link — the arrow (→) has been removed; only the download
 icon appears next to "View my full repertoire" now.
 Color customization guide — see below.
+
 What to replace before going live
 1. Images
 Every placeholder photo lives in `images/` and is clearly marked in
@@ -127,6 +131,7 @@ to switch from the charcoal/brass theme to a warmer cream/burgundy theme:
 ```
 You don't need to touch anything else in the file — every background,
 heading, link, button, and border pulls its color from these six variables.
+
 Publishing to GitHub Pages
 Push these files to a GitHub repository.
 In the repository settings, open Pages, and set the source to your

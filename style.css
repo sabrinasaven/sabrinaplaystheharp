@@ -303,14 +303,14 @@ a.has-download {
 }
 
 .hero-image {
+  /* No forced aspect-ratio box, no object-fit — the image simply displays
+     at its own natural size, scaled to the full width of the screen. Since
+     your photo is already exactly 4:3, this renders at exactly that ratio
+     with zero cropping and zero gaps (a forced CSS aspect-ratio box was
+     the source of the earlier gap/letterbox issue, since it created a
+     separate frame for the browser to reconcile the photo against). */
   width: 100%;
-  /* Fixed 4:3 landscape — displays edge-to-edge at this exact ratio on
-     every screen size. Since your photo is already exactly 4:3, cover and
-     contain render identically here (nothing gets cropped) — but cover
-     guarantees the frame is always fully filled with zero blank space,
-     even if a future photo is off by a pixel or two. */
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
 }
 
 /* Split (image + text) sections, used for About / Teaching */

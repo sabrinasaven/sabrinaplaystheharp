@@ -1,8 +1,6 @@
 Sabrina Savenkova — Harpist Website
-
 A single-page, responsive personal website built with plain HTML, CSS, and
 JavaScript, ready to host on GitHub Pages.
-
 Files
 `index.html` — page structure and content
 `style.css` — all visual styling (colors, type, layout, responsiveness)
@@ -10,14 +8,15 @@ Files
 accordion, and the contact form
 `images/` — placeholder photos and social icons (replace these)
 `audio/`, `video/` — placeholder folders for your own media
-
 What's new in this revision
-Hero image spacing — removed the blank bands that could appear above
-and below the hero photo by switching from `object-fit: contain` back to
-`object-fit: cover`. For a photo that's already exactly 4:3 (as yours is),
-`cover` and `contain` look identical — nothing is cropped — but `cover`
-guarantees the frame is always fully filled, with no possibility of
-letterbox bars even from a sub-pixel ratio mismatch.
+Hero image gaps (actual fix) — removed the forced CSS `aspect-ratio`
+box and `object-fit` on the hero image entirely. It previously created a
+separate 4:3 "frame" that the browser had to reconcile the photo against
+— any tiny mismatch showed up as blank bands (in the page background
+color, so they were easy to mistake for layout gaps rather than
+letterboxing). The image now just displays at its own natural size, full
+width. Since your photo is already exactly 4:3, it renders at that exact
+ratio, edge-to-edge, directly under the nav bar — no gaps, no cropping.
 Previously
 Hero image (mobile fix) — fixed a bug where a mobile CSS rule was
 unintentionally re-adding side padding to the hero section.
@@ -31,14 +30,13 @@ sits directly below "View my full repertoire" in the left-hand column.
 Repertoire link — the arrow (→) has been removed; only the download
 icon appears next to "View my full repertoire" now.
 Color customization guide — see below.
-
 What to replace before going live
 1. Images
 Every placeholder photo lives in `images/` and is clearly marked in
 `index.html` with a `REPLACE ME` comment just above the `<img>` tag:
-`hero-placeholder.JPG` — Home section hero photo. Landscape 4:3 ratio
-(e.g. 1600×1200px, or any multiple of that ratio). It always displays at
-exactly this ratio, full width, edge-to-edge, filling the frame completely.
+`hero-placeholder.JPG` — Home section hero photo. Displays at its natural
+size, full width. Use a landscape 4:3 photo (e.g. 1600×1200px, or any
+multiple of that ratio) so it renders at exactly that ratio.
 `about-placeholder.jpg` — About section portrait (portrait 4:3, i.e.
 3:4 width:height — e.g. 900×1200px)
 `weddings-placeholder.jpg` — Weddings & Events photo (portrait 4:3)
@@ -48,13 +46,13 @@ display cleanly without cropping or letterboxing. Just save your own photo
 with the same filename (or update the `src`).
 2. Video (Listen section)
 Open `index.html`, find the `<iframe>` inside `#listen`, and replace
-`REPLACE\_WITH\_VIDEO\_ID` with your own YouTube/Vimeo embed — or swap the
+`REPLACE_WITH_VIDEO_ID` with your own YouTube/Vimeo embed — or swap the
 `<iframe>` for a `<video>` tag pointing at a file in `video/` (an example is
 commented directly above it).
 3. Audio (Weddings & Events section)
 Replace `audio/wedding-sample-placeholder.mp3` with your own track, and
 update the piece name / artist / arranger text next to it. This block
-(`.weddings\_\_audio` in `index.html`) spans the full section width on
+(`.weddings__audio` in `index.html`) spans the full section width on
 desktop, and sits fifth on mobile (after the repertoire link, before
 Enquire Now).
 4. Links — all set in one place
@@ -83,14 +81,14 @@ external URL.
 5. Contact form (Formspree)
 Create a form at formspree.io and copy your
 endpoint URL.
-In `index.html`, find `<form id="contactForm" ... action="https://formspree.io/f/YOUR\_FORM\_ID">`
-and replace `YOUR\_FORM\_ID` with your real endpoint.
+In `index.html`, find `<form id="contactForm" ... action="https://formspree.io/f/YOUR_FORM_ID">`
+and replace `YOUR_FORM_ID` with your real endpoint.
 The form submits asynchronously (no page reload), validates the required
 fields, and shows a success or error message beneath the Send button.
 6. FAQ content
 The five placeholder questions in the Questions section (`#questions` in
 `index.html`) can be edited freely — just change the text inside each
-`.accordion\_\_trigger` and its matching `.accordion\_\_panel`.
+`.accordion__trigger` and its matching `.accordion__panel`.
 There's also a short italic note below the accordion:
 ```html
 <p class="faq-note"><em>Don't see your question here? Get in touch and I'll be happy to help.</em></p>
@@ -110,12 +108,12 @@ All colors are defined once, at the very top of `style.css`, as CSS custom
 properties (variables) inside `:root`:
 ```css
 :root {
-  --ink: #14161a;          /\* main page background (near-black) \*/
-  --surface: #1d2024;      /\* slightly lighter panels — audio player, form fields, More menu \*/
-  --ivory: #ede8df;        /\* main text color (headings, body copy) \*/
-  --stone: #9c978c;        /\* muted/secondary text (captions, labels, the FAQ note) \*/
-  --brass: #c9a24b;        /\* accent color — links, underlines, icons, borders \*/
-  --brass-deep: #8b6f2e;   /\* darker accent — button hover state \*/
+  --ink: #14161a;          /* main page background (near-black) */
+  --surface: #1d2024;      /* slightly lighter panels — audio player, form fields, More menu */
+  --ivory: #ede8df;        /* main text color (headings, body copy) */
+  --stone: #9c978c;        /* muted/secondary text (captions, labels, the FAQ note) */
+  --brass: #c9a24b;        /* accent color — links, underlines, icons, borders */
+  --brass-deep: #8b6f2e;   /* darker accent — button hover state */
 }
 ```
 To change a color, edit the hex value on the right of the colon — every
@@ -133,7 +131,6 @@ to switch from the charcoal/brass theme to a warmer cream/burgundy theme:
 ```
 You don't need to touch anything else in the file — every background,
 heading, link, button, and border pulls its color from these six variables.
-
 Publishing to GitHub Pages
 Push these files to a GitHub repository.
 In the repository settings, open Pages, and set the source to your

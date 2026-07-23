@@ -59,6 +59,7 @@ arrow, just the icon). Browsers only honour `download` for files on the same
 site, so for a real download prompt, add your PDF into this repository (e.g.
 in a `documents/` folder) and point `repertoire` at that path rather than an
 external URL.
+
 5. Contact form (Formspree)
 Create a form at formspree.io and copy your
 endpoint URL.
@@ -66,6 +67,7 @@ In `index.html`, find `<form id="contactForm" ... action="https://formspree.io/f
 and replace `YOUR_FORM_ID` with your real endpoint.
 The form submits asynchronously (no page reload), validates the required
 fields, and shows a success or error message beneath the Send button.
+
 6. FAQ content
 The five placeholder questions in the Questions section (`#questions` in
 `index.html`) can be edited freely — just change the text inside each

@@ -12,16 +12,18 @@ accordion, and the contact form
 `audio/`, `video/` — placeholder folders for your own media
 
 What's new in this revision
-Hero image (mobile fix) — fixed a bug where the hero image had visible
-gaps on the left/right on mobile and looked cropped. The cause was a
-mobile CSS rule unintentionally re-adding side padding to the hero
-section; it's now excluded from that rule, so the hero is always
-edge-to-edge. Also switched to `object-fit: contain` so the photo is
-never cropped, even if it isn't pixel-exact 4:3.
-Weddings & Events — mobile order — updated to Image → Text → View my
-full repertoire → Audio → Enquire Now → Frequently Asked Questions, with
-a tighter gap specifically between Enquire Now and the FAQ link.
+Hero image spacing — removed the blank bands that could appear above
+and below the hero photo by switching from `object-fit: contain` back to
+`object-fit: cover`. For a photo that's already exactly 4:3 (as yours is),
+`cover` and `contain` look identical — nothing is cropped — but `cover`
+guarantees the frame is always fully filled, with no possibility of
+letterbox bars even from a sub-pixel ratio mismatch.
 Previously
+Hero image (mobile fix) — fixed a bug where a mobile CSS rule was
+unintentionally re-adding side padding to the hero section.
+Weddings & Events — mobile order — Image → Text → View my full
+repertoire → Audio → Enquire Now → Frequently Asked Questions, with
+tighter spacing between Text/Repertoire and between Enquire/FAQ/Audio.
 Mobile header — the hamburger menu button sits in the same row as
 "Sabrina Savenkova | Harpist", aligned to the right of the title.
 Weddings & Events — desktop — the "Frequently Asked Questions" link
@@ -36,7 +38,7 @@ Every placeholder photo lives in `images/` and is clearly marked in
 `index.html` with a `REPLACE ME` comment just above the `<img>` tag:
 `hero-placeholder.JPG` — Home section hero photo. Landscape 4:3 ratio
 (e.g. 1600×1200px, or any multiple of that ratio). It always displays at
-exactly this ratio, full width, edge-to-edge, and is never cropped.
+exactly this ratio, full width, edge-to-edge, filling the frame completely.
 `about-placeholder.jpg` — About section portrait (portrait 4:3, i.e.
 3:4 width:height — e.g. 900×1200px)
 `weddings-placeholder.jpg` — Weddings & Events photo (portrait 4:3)
@@ -46,13 +48,13 @@ display cleanly without cropping or letterboxing. Just save your own photo
 with the same filename (or update the `src`).
 2. Video (Listen section)
 Open `index.html`, find the `<iframe>` inside `#listen`, and replace
-`REPLACE_WITH_VIDEO_ID` with your own YouTube/Vimeo embed — or swap the
+`REPLACE\_WITH\_VIDEO\_ID` with your own YouTube/Vimeo embed — or swap the
 `<iframe>` for a `<video>` tag pointing at a file in `video/` (an example is
 commented directly above it).
 3. Audio (Weddings & Events section)
 Replace `audio/wedding-sample-placeholder.mp3` with your own track, and
 update the piece name / artist / arranger text next to it. This block
-(`.weddings__audio` in `index.html`) spans the full section width on
+(`.weddings\_\_audio` in `index.html`) spans the full section width on
 desktop, and sits fifth on mobile (after the repertoire link, before
 Enquire Now).
 4. Links — all set in one place
@@ -81,14 +83,14 @@ external URL.
 5. Contact form (Formspree)
 Create a form at formspree.io and copy your
 endpoint URL.
-In `index.html`, find `<form id="contactForm" ... action="https://formspree.io/f/YOUR_FORM_ID">`
-and replace `YOUR_FORM_ID` with your real endpoint.
+In `index.html`, find `<form id="contactForm" ... action="https://formspree.io/f/YOUR\_FORM\_ID">`
+and replace `YOUR\_FORM\_ID` with your real endpoint.
 The form submits asynchronously (no page reload), validates the required
 fields, and shows a success or error message beneath the Send button.
 6. FAQ content
 The five placeholder questions in the Questions section (`#questions` in
 `index.html`) can be edited freely — just change the text inside each
-`.accordion__trigger` and its matching `.accordion__panel`.
+`.accordion\_\_trigger` and its matching `.accordion\_\_panel`.
 There's also a short italic note below the accordion:
 ```html
 <p class="faq-note"><em>Don't see your question here? Get in touch and I'll be happy to help.</em></p>
@@ -108,12 +110,12 @@ All colors are defined once, at the very top of `style.css`, as CSS custom
 properties (variables) inside `:root`:
 ```css
 :root {
-  --ink: #14161a;          /* main page background (near-black) */
-  --surface: #1d2024;      /* slightly lighter panels — audio player, form fields, More menu */
-  --ivory: #ede8df;        /* main text color (headings, body copy) */
-  --stone: #9c978c;        /* muted/secondary text (captions, labels, the FAQ note) */
-  --brass: #c9a24b;        /* accent color — links, underlines, icons, borders */
-  --brass-deep: #8b6f2e;   /* darker accent — button hover state */
+  --ink: #14161a;          /\* main page background (near-black) \*/
+  --surface: #1d2024;      /\* slightly lighter panels — audio player, form fields, More menu \*/
+  --ivory: #ede8df;        /\* main text color (headings, body copy) \*/
+  --stone: #9c978c;        /\* muted/secondary text (captions, labels, the FAQ note) \*/
+  --brass: #c9a24b;        /\* accent color — links, underlines, icons, borders \*/
+  --brass-deep: #8b6f2e;   /\* darker accent — button hover state \*/
 }
 ```
 To change a color, edit the hex value on the right of the colon — every

@@ -304,13 +304,13 @@ a.has-download {
 
 .hero-image {
   width: 100%;
-  /* Fixed 4:3 landscape — displays edge-to-edge at this exact ratio on every
-     screen size. object-fit: contain guarantees the photo is never cropped;
-     use a 4:3 source photo (e.g. 1600x1200px) so it also fills the frame
-     completely with no letterboxing. */
+  /* Fixed 4:3 landscape — displays edge-to-edge at this exact ratio on
+     every screen size. Since your photo is already exactly 4:3, cover and
+     contain render identically here (nothing gets cropped) — but cover
+     guarantees the frame is always fully filled with zero blank space,
+     even if a future photo is off by a pixel or two. */
   aspect-ratio: 4 / 3;
-  object-fit: contain;
-  background: var(--ink);
+  object-fit: cover;
 }
 
 /* Split (image + text) sections, used for About / Teaching */

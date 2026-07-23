@@ -1,6 +1,8 @@
 Sabrina Savenkova — Harpist Website
+
 A single-page, responsive personal website built with plain HTML, CSS, and
 JavaScript, ready to host on GitHub Pages.
+
 Files
 `index.html` — page structure and content
 `style.css` — all visual styling (colors, type, layout, responsiveness)
@@ -8,28 +10,7 @@ Files
 accordion, and the contact form
 `images/` — placeholder photos and social icons (replace these)
 `audio/`, `video/` — placeholder folders for your own media
-What's new in this revision
-Hero image gaps (actual fix) — removed the forced CSS `aspect-ratio`
-box and `object-fit` on the hero image entirely. It previously created a
-separate 4:3 "frame" that the browser had to reconcile the photo against
-— any tiny mismatch showed up as blank bands (in the page background
-color, so they were easy to mistake for layout gaps rather than
-letterboxing). The image now just displays at its own natural size, full
-width. Since your photo is already exactly 4:3, it renders at that exact
-ratio, edge-to-edge, directly under the nav bar — no gaps, no cropping.
-Previously
-Hero image (mobile fix) — fixed a bug where a mobile CSS rule was
-unintentionally re-adding side padding to the hero section.
-Weddings & Events — mobile order — Image → Text → View my full
-repertoire → Audio → Enquire Now → Frequently Asked Questions, with
-tighter spacing between Text/Repertoire and between Enquire/FAQ/Audio.
-Mobile header — the hamburger menu button sits in the same row as
-"Sabrina Savenkova | Harpist", aligned to the right of the title.
-Weddings & Events — desktop — the "Frequently Asked Questions" link
-sits directly below "View my full repertoire" in the left-hand column.
-Repertoire link — the arrow (→) has been removed; only the download
-icon appears next to "View my full repertoire" now.
-Color customization guide — see below.
+
 What to replace before going live
 1. Images
 Every placeholder photo lives in `images/` and is clearly marked in
@@ -94,6 +75,7 @@ There's also a short italic note below the accordion:
 <p class="faq-note"><em>Don't see your question here? Get in touch and I'll be happy to help.</em></p>
 ```
 Edit the text freely, or delete the whole `<p>` if you don't want it.
+
 Section layouts at a glance
 Weddings & Events
 Desktop: Title (full width) → Summary text + Enquire button + Repertoire
@@ -103,6 +85,7 @@ FAQ link
 About / Teaching
 Desktop: Image + text side by side (unchanged)
 Mobile: text first, image below
+
 Changing the background and text colors
 All colors are defined once, at the very top of `style.css`, as CSS custom
 properties (variables) inside `:root`:
@@ -131,6 +114,7 @@ to switch from the charcoal/brass theme to a warmer cream/burgundy theme:
 ```
 You don't need to touch anything else in the file — every background,
 heading, link, button, and border pulls its color from these six variables.
+
 Publishing to GitHub Pages
 Push these files to a GitHub repository.
 In the repository settings, open Pages, and set the source to your

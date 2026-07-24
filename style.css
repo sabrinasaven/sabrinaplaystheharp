@@ -537,7 +537,7 @@ a.has-download {
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--ivory);
+  color: var(--stone);
   font-family: var(--display);
   font-size: 1.15rem;
   text-align: left;
@@ -562,8 +562,20 @@ a.has-download {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s var(--ease);
+  /* Set once here so every bit of text inside inherits the same grey,
+     rather than relying on a `p`-only rule that other tags could slip past */
+  color: var(--stone);
 }
-.accordion__panel p { padding: 0 4px 22px; color: var(--stone); }
+.accordion__panel p {
+  padding: 0 4px;
+  margin: 0 0 0.6em;
+}
+/* Only the last paragraph gets the larger gap before the next FAQ item;
+   paragraphs within the same answer stay close together */
+.accordion__panel p:last-of-type {
+  margin-bottom: 0;
+  padding-bottom: 22px;
+}
 
 .faq-note {
   max-width: 760px;
@@ -588,6 +600,8 @@ a.has-download {
 }
 .social-icon {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 14px;
   border-radius: 50%;
   border: 1px solid rgba(201, 162, 75, 0.25);
@@ -598,7 +612,20 @@ a.has-download {
   background: rgba(201, 162, 75, 0.08);
   transform: translateY(-3px);
 }
-/* Icons are already tinted brass in their SVG source (see /images/icon-*.svg) */
+/*
+  Fixed display box for every social icon, regardless of the uploaded
+  file's native resolution or aspect ratio (official logo files can be
+  square, circular, or a wide rectangle like YouTube's). object-fit:
+  contain scales each one down to fit inside this box without cropping
+  or distorting it — just replace the file in index.html and it will
+  automatically fit this same space.
+*/
+.social-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+/* Uses whichever brand logo files are referenced in index.html as-is */
 
 /* =========================================================================
    FOOTER

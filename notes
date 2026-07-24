@@ -8,3 +8,12 @@
         </div>
       </div>
 //MAKE SURE TO INSERT THIS SO THE LAST (THIRD) EXTRA </DIV> IS DIRECTLY BELOW THESE
+
+
+FOR EMAIL AND PHONE NO CONTACT
+        <p>
+          Alternatively, please get in touch with me on
+          <!-- REPLACE ME: your preferred contact link, e.g. Instagram DM or a direct email -->
+          <a href="tel:+447305660180">0 7305 660 180</a>, or 
+          <a href="mailto:sabrinasavenkova.harp@gmail.com">sabrinasavenkova.harp@gmail.com</a>.
+        </p>

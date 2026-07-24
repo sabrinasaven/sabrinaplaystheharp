@@ -18,10 +18,10 @@ const LINKS = {
 
   // Repertoire is a downloadable PDF — point this at the actual file, e.g.
   // "documents/repertoire.pdf" if you add the PDF to this repository.
-  repertoire: "documents/repertoire.pdf",
+  repertoire: "https://example.com/repertoire.pdf",
 
   // Social media — replace with your real profile URLs
-  youtube: "https://www.youtube.com/@sabrinasavenkova",
+  youtube: "https://www.youtube.com/@your-channel",
   instagram: "https://www.instagram.com/your-profile",
   facebook: "https://www.facebook.com/your-page",
 };

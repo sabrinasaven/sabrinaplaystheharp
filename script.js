@@ -21,8 +21,8 @@ const LINKS = {
   repertoire: "documents/Sabrina Savenkova | Repertoire.pdf",
 
   // Social media — replace with your real profile URLs
-  youtube: "https://www.youtube.com/@your-channel",
-  instagram: "https://www.instagram.com/your-profile",
+  youtube: "https://www.youtube.com/@sabrinasavenkova",
+  instagram: "https://www.instagram.com/sabrinaplaystheharp",
   facebook: "https://www.facebook.com/your-page",
 };
 

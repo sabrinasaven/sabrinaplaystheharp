@@ -1,0 +1,10 @@
+      <div class="accordion__item">
+        <button class="accordion__trigger" aria-expanded="false" aria-controls="faq5">
+          <span>How do I secure a booking?</span>
+          <span class="accordion__icon" aria-hidden="true"></span>
+        </button>
+        <div class="accordion__panel" id="faq5" role="region">
+          <p>Replace this with your own answer — deposit, contract, and confirmation process.</p>
+        </div>
+      </div>
+//MAKE SURE TO INSERT THIS SO THE LAST (THIRD) EXTRA </DIV> IS DIRECTLY BELOW THESE

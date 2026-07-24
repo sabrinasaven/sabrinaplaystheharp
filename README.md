@@ -1,8 +1,6 @@
 Sabrina Savenkova — Harpist Website
-
 A single-page, responsive personal website built with plain HTML, CSS, and
 JavaScript, ready to host on GitHub Pages.
-
 Files
 `index.html` — page structure and content
 `style.css` — all visual styling (colors, type, layout, responsiveness)
@@ -10,7 +8,43 @@ Files
 accordion, and the contact form
 `images/` — placeholder photos and social icons (replace these)
 `audio/`, `video/` — placeholder folders for your own media
-
+What's new in this revision
+Social icons — official logo files — the site now uses the actual
+official brand logo files (Instagram's gradient glyph, Facebook's primary
+logo, YouTube's icon) instead of custom-drawn icons. Each `<img>` is fixed
+to the same 48×48 display box regardless of the file's native resolution
+or aspect ratio, so any logo file you drop in — square, circular, or a
+wide rectangle like YouTube's — automatically fits the same space with no
+cropping or distortion. See "Social icons" below for exactly what to
+replace and how.
+Previously
+FAQ text color — the question titles now use the same grey as the
+answers (previously questions were a lighter off-white, answers grey —
+inconsistent). Everything in the accordion is grey by default now
+(hover still highlights in brass).
+FAQ paragraph spacing — if an answer has more than one paragraph,
+the gap between paragraphs within that answer is now tighter; the larger
+gap is reserved for the space before the next question.
+Hero image gaps (actual fix) — removed the forced CSS `aspect-ratio`
+box and `object-fit` on the hero image entirely. It previously created a
+separate 4:3 "frame" that the browser had to reconcile the photo against
+— any tiny mismatch showed up as blank bands (in the page background
+color, so they were easy to mistake for layout gaps rather than
+letterboxing). The image now just displays at its own natural size, full
+width. Since your photo is already exactly 4:3, it renders at that exact
+ratio, edge-to-edge, directly under the nav bar — no gaps, no cropping.
+Hero image (mobile fix) — fixed a bug where a mobile CSS rule was
+unintentionally re-adding side padding to the hero section.
+Weddings & Events — mobile order — Image → Text → View my full
+repertoire → Audio → Enquire Now → Frequently Asked Questions, with
+tighter spacing between Text/Repertoire and between Enquire/FAQ/Audio.
+Mobile header — the hamburger menu button sits in the same row as
+"Sabrina Savenkova | Harpist", aligned to the right of the title.
+Weddings & Events — desktop — the "Frequently Asked Questions" link
+sits directly below "View my full repertoire" in the left-hand column.
+Repertoire link — the arrow (→) has been removed; only the download
+icon appears next to "View my full repertoire" now.
+Color customization guide — see below.
 What to replace before going live
 1. Images
 Every placeholder photo lives in `images/` and is clearly marked in
@@ -25,18 +59,32 @@ multiple of that ratio) so it renders at exactly that ratio.
 Keep your replacement photos in the ratio noted above for each one so they
 display cleanly without cropping or letterboxing. Just save your own photo
 with the same filename (or update the `src`).
-2. Video (Listen section)
+2. Social icons
+The Socials section (`#socials` in `index.html`) currently uses the official
+brand logo files:
+`images/yt_icon_red_digital.png` — YouTube
+`images/Instagram_Glyph_Gradient.png` — Instagram
+`images/Facebook_Logo_Primary.png` — Facebook
+To swap in an updated or different logo file, just change the `src` (and the
+`width`/`height` attributes to match the new file's actual pixel dimensions,
+so the browser can reserve the right space before it loads). You don't need
+to resize or edit the image yourself first — every icon is displayed in a
+fixed 48×48 box (`.social-icon img` in `style.css`) regardless of the file's
+native resolution or aspect ratio, so square icons, circular icons, and wide
+rectangles (like YouTube's) all fit the same space automatically, with no
+cropping or stretching.
+3. Video (Listen section)
 Open `index.html`, find the `<iframe>` inside `#listen`, and replace
 `REPLACE_WITH_VIDEO_ID` with your own YouTube/Vimeo embed — or swap the
 `<iframe>` for a `<video>` tag pointing at a file in `video/` (an example is
 commented directly above it).
-3. Audio (Weddings & Events section)
+4. Audio (Weddings & Events section)
 Replace `audio/wedding-sample-placeholder.mp3` with your own track, and
 update the piece name / artist / arranger text next to it. This block
 (`.weddings__audio` in `index.html`) spans the full section width on
 desktop, and sits fifth on mobile (after the repertoire link, before
 Enquire Now).
-4. Links — all set in one place
+5. Links — all set in one place
 Open `script.js` and edit the `LINKS` object at the top of the file:
 ```js
 const LINKS = {
@@ -59,16 +107,14 @@ arrow, just the icon). Browsers only honour `download` for files on the same
 site, so for a real download prompt, add your PDF into this repository (e.g.
 in a `documents/` folder) and point `repertoire` at that path rather than an
 external URL.
-
-5. Contact form (Formspree)
+6. Contact form (Formspree)
 Create a form at formspree.io and copy your
 endpoint URL.
 In `index.html`, find `<form id="contactForm" ... action="https://formspree.io/f/YOUR_FORM_ID">`
 and replace `YOUR_FORM_ID` with your real endpoint.
 The form submits asynchronously (no page reload), validates the required
 fields, and shows a success or error message beneath the Send button.
-
-6. FAQ content
+7. FAQ content
 The five placeholder questions in the Questions section (`#questions` in
 `index.html`) can be edited freely — just change the text inside each
 `.accordion__trigger` and its matching `.accordion__panel`.
@@ -77,7 +123,6 @@ There's also a short italic note below the accordion:
 <p class="faq-note"><em>Don't see your question here? Get in touch and I'll be happy to help.</em></p>
 ```
 Edit the text freely, or delete the whole `<p>` if you don't want it.
-
 Section layouts at a glance
 Weddings & Events
 Desktop: Title (full width) → Summary text + Enquire button + Repertoire
@@ -87,7 +132,6 @@ FAQ link
 About / Teaching
 Desktop: Image + text side by side (unchanged)
 Mobile: text first, image below
-
 Changing the background and text colors
 All colors are defined once, at the very top of `style.css`, as CSS custom
 properties (variables) inside `:root`:
@@ -116,7 +160,6 @@ to switch from the charcoal/brass theme to a warmer cream/burgundy theme:
 ```
 You don't need to touch anything else in the file — every background,
 heading, link, button, and border pulls its color from these six variables.
-
 Publishing to GitHub Pages
 Push these files to a GitHub repository.
 In the repository settings, open Pages, and set the source to your

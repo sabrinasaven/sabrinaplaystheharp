@@ -4,6 +4,7 @@ A single-page, responsive personal website built with plain HTML, CSS, and
 JavaScript, ready to host on GitHub Pages.
 
 Files
+
 `index.html` — page structure and content
 `style.css` — all visual styling (colors, type, layout, responsiveness)
 `script.js` — navigation behaviour, the shared link config, the FAQ
@@ -12,6 +13,7 @@ accordion, and the contact form
 `audio/`, `video/` — placeholder folders for your own media
 
 What to replace before going live
+
 1. Images
 Every placeholder photo lives in `images/` and is clearly marked in
 `index.html` with a `REPLACE ME` comment just above the `<img>` tag:
@@ -93,15 +95,21 @@ There's also a short italic note below the accordion:
 Edit the text freely, or delete the whole `<p>` if you don't want it.
 
 Section layouts at a glance
+
 Weddings & Events
+
 Desktop: Title (full width) → Summary text + Enquire button + Repertoire
 link + FAQ link (left column) + Image (right column) → Audio (full width)
 Mobile: Title → Image → Text → Repertoire link → Audio → Enquire Now →
 FAQ link
+
 About / Teaching
+
 Desktop: Image + text side by side (unchanged)
 Mobile: text first, image below
+
 Changing the background and text colors
+
 All colors are defined once, at the very top of `style.css`, as CSS custom
 properties (variables) inside `:root`:
 ```css
@@ -131,7 +139,17 @@ You don't need to touch anything else in the file — every background,
 heading, link, button, and border pulls its color from these six variables.
 
 Publishing to GitHub Pages
+
 Push these files to a GitHub repository.
 In the repository settings, open Pages, and set the source to your
 main branch (root folder).
 Your site will be published at `https://<your-username>.github.io/<repo-name>/`.
+
+Changing Domain providers
+
+The 60-Day Lock: Under ICANN rules, you cannot transfer a domain if it was 
+registered or previously transferred within the last 60 days.
+Expiration Safety: Start the transfer at least 2 weeks before your domain expires 
+to avoid service interruptions.
+Extra Year Added: Transferring a standard domain (like a .com) usually requires a 
+fee, but this fee automatically adds one full year to your current expiration date.

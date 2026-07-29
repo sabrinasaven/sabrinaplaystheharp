@@ -23,7 +23,7 @@ const LINKS = {
   // Social media — replace with your real profile URLs
   youtube: "https://www.youtube.com/@sabrinasavenkova",
   instagram: "https://www.instagram.com/sabrinaplaystheharp",
-  facebook: "https://www.facebook.com/your-page",
+  facebook: "https://www.facebook.com/people/Sabrina-Savenkova/pfbid0LMqNtncb9Whw3mVeXuRnhWHqV4EB4iCg3orbGdFkr6SSoFxeigvigN9it5kZyihFl/",
 };
 
 document.querySelectorAll("[data-link]").forEach((el) => {

@@ -18,6 +18,48 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
+
+<!--
+  =====================================================================
+  STRUCTURED DATA (JSON-LD)
+  Tells search engines "this page is about a specific person, who does
+  X" — this is what can make Google show a proper Knowledge Panel-style
+  result for a name search, rather than just a plain blue link.
+
+  REPLACE ME when you have real details:
+  - "image": point this at your real hero photo once uploaded
+  - "sameAs": update these to your real YouTube/Instagram/Facebook
+    profile URLs — keep them matching the LINKS object in script.js
+  - "description": tweak the wording if your services change
+  =====================================================================
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sabrina Savenkova",
+  "url": "https://sabrinasavenkova.co.uk/",
+  "image": "https://sabrinasavenkova.co.uk/images/hero-placeholder.JPG",
+  "jobTitle": "Harpist",
+  "description": "Professional harpist performing as an orchestral, chamber, and solo musician, specializing in weddings, corporate events, and private celebrations, and offering private harp tuition.",
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Guildhall School of Music & Drama"
+  },
+  "knowsAbout": [
+    "Harp performance",
+    "Orchestral music",
+    "Chamber music",
+    "Wedding and event music",
+    "Harp tuition"
+  ],
+  "sameAs": [
+    "https://www.youtube.com/@your-channel",
+    "https://www.instagram.com/your-profile",
+    "https://www.facebook.com/your-page"
+  ]
+}
+</script>
 </head>
 <body>
 

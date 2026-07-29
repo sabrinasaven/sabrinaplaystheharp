@@ -94,6 +94,28 @@ There's also a short italic note below the accordion:
 ```
 Edit the text freely, or delete the whole `<p>` if you don't want it.
 
+8. SEO files
+Three things help search engines find and understand the site:
+`sitemap.xml` (repo root) — lists the site's URL for search engines to
+crawl. Since this is a single-page site, it only needs one entry. If you
+later turn Recordings/Gallery/Biography/Repertoire into real pages instead
+of external links, add each as its own `<url>` entry here.
+`robots.txt` (repo root) — tells search engines they're allowed to
+crawl the whole site, and points them to the sitemap.
+Structured data — a `<script type="application/ld+json">` block in
+`index.html`'s `<head>` identifying Sabrina as a person/harpist/teacher.
+This is what can help a Google search for her name show a richer result.
+Update these fields once real details are finalized:
+`"image"` — point at your real hero photo once uploaded
+`"sameAs"` — update to your real YouTube/Instagram/Facebook URLs (keep
+these matching the `LINKS` object in `script.js`)
+`"description"` — tweak if your services change
+Once live: submit `sitemap.xml` in Google Search Console
+and Bing Webmaster Tools — this is what
+actually gets the site crawled quickly, rather than waiting for it to be
+found naturally. Both files and the structured data only help search engines
+find and understand the page; they don't guarantee a ranking position.
+
 Section layouts at a glance
 
 Weddings & Events

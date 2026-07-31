@@ -23,7 +23,7 @@ const LINKS = {
   // Fallback link straight to your Google Business profile/reviews page —
   // find this via your Business Profile dashboard ("Ask for reviews" gives
   // a shareable link), or the "Share" button on your Google Maps listing.
-  googleReviews: "https://g.page/r/REPLACE_WITH_YOUR_GOOGLE_BUSINESS_ID/review",
+  googleReviews: "https://share.google/kv2IQTasmp8moK71k",
 
   // Social media — replace with your real profile URLs
   youtube: "https://www.youtube.com/@your-channel",

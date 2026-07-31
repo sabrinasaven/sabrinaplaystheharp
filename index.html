@@ -31,6 +31,11 @@
   - "sameAs": update these to your real YouTube/Instagram/Facebook
     profile URLs — keep them matching the LINKS object in script.js
   - "description": tweak the wording if your services change
+
+  NOTE: "alumniOf" must be an array of separate objects (one per school),
+  each with a single "name" string — schema.org's "name" property only
+  accepts one value, not a list. This was the cause of Google Search
+  Console's "incorrect value type" warning.
   =====================================================================
 -->
 <script type="application/ld+json">
@@ -42,13 +47,16 @@
   "image": "https://sabrinasavenkova.co.uk/images/hero-placeholder.JPG",
   "jobTitle": "Harpist",
   "description": "London-based professional harpist performing as an orchestral, chamber, and solo musician, specializing in weddings, corporate events, and private celebrations, and offering private harp tuition.",
-  "alumniOf": {
-    "@type": "CollegeOrUniversity",
-    "name": [
-      "Guildhall School of Music & Drama",
-      "Chetham's School of Music",
-    ],
-  },
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Guildhall School of Music & Drama"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Chetham's School of Music"
+    }
+  ],
   "knowsAbout": [
     "Harp performance",
     "Orchestral music",
@@ -98,7 +106,7 @@
       <li><a href="#teaching" data-section="teaching">Teaching</a></li>
       <li><a href="#contact" data-section="contact">Contact</a></li>
 
-      <!-- MORE MENU — contains the four pages that are not primary sections -->
+      <!-- MORE MENU — contains pages/sections that are not primary nav items -->
       <li class="nav__more">
         <button class="nav__more-btn" id="moreBtn" aria-haspopup="true" aria-expanded="false" aria-controls="moreMenu" data-section="more">
           More <span class="nav__caret" aria-hidden="true">▾</span>
@@ -122,6 +130,8 @@
               </svg>
             </a>
           </li>
+          <!-- Reviews is an in-page section (below), not an external link, so it scrolls rather than opening a new tab -->
+          <li role="none"><a role="menuitem" href="#reviews">Reviews</a></li>
         </ul>
       </li>
     </ul>
@@ -294,8 +304,8 @@
       <h2>Private Tuition</h2>
       <p>
         I offer private harp tuition for students of all levels, focusing on technique,
-        musicality, and confidence.<br><br>Lessons are tailored to each student's individual goals – whether that means progressing through 
-        graded examinations, preparing for a school music scholarship or audition, or learning for enjoyment.<br><br>For further enquiries, 
+        musicality, and confidence.<br><br>Lessons are tailored to each student's individual goals – whether that means progressing through
+        graded examinations, preparing for a school music scholarship or audition, or learning for enjoyment.<br><br>For further enquiries,
         please get in touch.
       </p>
     </div>
@@ -316,8 +326,7 @@
         </p>
         <p>
           Alternatively, please get in touch with me on
-          <!-- REPLACE ME: your preferred contact link, e.g. Instagram DM or a direct email -->
-          <a href="tel:+447305660180">0 7305 660 180</a>, or 
+          <a href="tel:+447305660180">0 7305 660 180</a>, or
           <a href="mailto:sabrinasavenkova.harp@gmail.com">sabrinasavenkova.harp@gmail.com</a>.
         </p>
       </div>
@@ -372,7 +381,6 @@
     <h2 class="section-heading--center">Frequently Asked Questions</h2>
 
     <div class="accordion" id="accordion">
-      <!-- Each item below is a placeholder — edit the question/answer text freely -->
       <div class="accordion__item">
         <button class="accordion__trigger" aria-expanded="false" aria-controls="faq1">
           <span>Where are you based?</span>
@@ -389,8 +397,8 @@
           <span class="accordion__icon" aria-hidden="true"></span>
         </button>
         <div class="accordion__panel" id="faq2" role="region">
-          <p>Yes – however please prepare a shaded and/or sheltered area to protect the harp from direct sunlight and unexpected rain. The harp is a delicate instrument, 
-            and these conditions help ensure it remains in excellent condition throughout your event.</p>
+          <p>Yes – however please prepare a shaded and/or sheltered area to protect the harp from direct sunlight and unexpected rain. The harp is a delicate instrument,
+          and these conditions help ensure it remains in excellent condition throughout your event.</p>
           <p class="faq-note"><em>Please note that the harp requires step-free (disabled) access wherever possible. As the instrument is large and delicate, it can only be safely moved up or down a small number of steps at a time.</em></p>
         </div>
       </div>
@@ -419,6 +427,31 @@
 
     <!-- Edit this note freely, or remove the tag entirely if you don't want it -->
     <p class="faq-note"><em>Don't see your question here? Get in touch and I'll be happy to help.</em></p>
+  </section>
+
+  <!-- =====================================================================
+       REVIEWS — reached via nav "More" menu (listed below Repertoire) and
+       highlights the "More" button when in view, same as FAQ/Socials.
+       Sits directly below the FAQ section.
+       ===================================================================== -->
+  <section id="reviews" class="section section--reviews">
+    <h2 class="section-heading--center">Reviews</h2>
+
+    <!--
+      REPLACE ME: embed your Google reviews here.
+      Google doesn't offer a simple native embed for a personal Business
+      Profile, so this is normally done with a third-party widget service
+      that pulls your real Google reviews and gives you a small
+      <script>/<iframe> snippet — for example EmbedSocial, Elfsight, or
+      Trustindex all have a free tier for a basic review widget. Once you
+      have that snippet, paste it in place of the placeholder div below.
+    -->
+    <div class="google-reviews-embed">
+      <p>Your Google reviews widget will appear here once embedded.</p>
+    </div>
+
+    <!-- Optional fallback link straight to your Google Business profile/reviews page -->
+    <a href="#" class="text-link" data-link="googleReviews">View all reviews on Google →</a>
   </section>
 
   <!-- =====================================================================

@@ -18,12 +18,17 @@ const LINKS = {
 
   // Repertoire is a downloadable PDF — point this at the actual file, e.g.
   // "documents/repertoire.pdf" if you add the PDF to this repository.
-  repertoire: "documents/Sabrina Savenkova | Repertoire.pdf",
+  repertoire: "https://example.com/repertoire.pdf",
+
+  // Fallback link straight to your Google Business profile/reviews page —
+  // find this via your Business Profile dashboard ("Ask for reviews" gives
+  // a shareable link), or the "Share" button on your Google Maps listing.
+  googleReviews: "https://g.page/r/REPLACE_WITH_YOUR_GOOGLE_BUSINESS_ID/review",
 
   // Social media — replace with your real profile URLs
-  youtube: "https://www.youtube.com/@sabrinasavenkova",
-  instagram: "https://www.instagram.com/sabrinaplaystheharp",
-  facebook: "https://www.facebook.com/people/Sabrina-Savenkova/pfbid0LMqNtncb9Whw3mVeXuRnhWHqV4EB4iCg3orbGdFkr6SSoFxeigvigN9it5kZyihFl/",
+  youtube: "https://www.youtube.com/@your-channel",
+  instagram: "https://www.instagram.com/your-profile",
+  facebook: "https://www.facebook.com/your-page",
 };
 
 document.querySelectorAll("[data-link]").forEach((el) => {
@@ -102,7 +107,7 @@ const navLinkEls = Array.from(document.querySelectorAll('.nav__links a[data-sect
 // Sections that map directly to a nav link (id -> matching link)
 const directSections = ["home", "about", "listen", "weddings", "teaching", "contact"];
 // Sections that should highlight the "More" button instead
-const moreSections = ["socials", "questions"];
+const moreSections = ["socials", "questions", "reviews"];
 
 function setActive(sectionId) {
   navLinkEls.forEach((a) => a.classList.remove("is-active"));

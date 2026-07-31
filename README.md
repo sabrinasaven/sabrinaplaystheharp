@@ -139,6 +139,7 @@ arrow, just the icon). Browsers only honour `download` for files on the same
 site, so for a real download prompt, add your PDF into this repository (e.g.
 in a `documents/` folder) and point `repertoire` at that path rather than an
 external URL.
+
 6. Contact form (Formspree)
 Create a form at formspree.io and copy your
 endpoint URL.
@@ -146,6 +147,7 @@ In `index.html`, find `<form id="contactForm" ... action="https://formspree.io/f
 and replace `YOUR_FORM_ID` with your real endpoint.
 The form submits asynchronously (no page reload), validates the required
 fields, and shows a success or error message beneath the Send button.
+
 7. FAQ content
 The five placeholder questions in the Questions section (`#questions` in
 `index.html`) can be edited freely — just change the text inside each
@@ -155,6 +157,7 @@ There's also a short italic note below the accordion:
 <p class="faq-note"><em>Don't see your question here? Get in touch and I'll be happy to help.</em></p>
 ```
 Edit the text freely, or delete the whole `<p>` if you don't want it.
+
 8. SEO files
 Three things help search engines find and understand the site:
 `sitemap.xml` (repo root) — lists the site's URL for search engines to
@@ -176,6 +179,7 @@ and Bing Webmaster Tools — this is what
 actually gets the site crawled quickly, rather than waiting for it to be
 found naturally. Both files and the structured data only help search engines
 find and understand the page; they don't guarantee a ranking position.
+
 9. Reviews
 The Reviews section (`#reviews` in `index.html`) sits directly below the FAQ
 section, with its own entry in the More menu. Right now it's a placeholder

@@ -587,6 +587,32 @@ a.has-download {
 }
 
 /* =========================================================================
+   REVIEWS
+   ========================================================================= */
+.section--reviews { text-align: center; }
+
+/*
+  Placeholder frame for the Google reviews embed. Once a real widget
+  <script>/<iframe> is pasted in, it can fill or override this box —
+  this just gives it a sensible minimum size and consistent framing in
+  the meantime, matching the audio player's panel style elsewhere.
+*/
+.google-reviews-embed {
+  max-width: 760px;
+  min-height: 240px;
+  margin: 0 auto 28px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  border: 1px dashed rgba(201, 162, 75, 0.3);
+  border-radius: var(--radius);
+  color: var(--stone);
+  font-style: italic;
+}
+
+/* =========================================================================
    SOCIALS
    ========================================================================= */
 .section--socials { text-align: center; }

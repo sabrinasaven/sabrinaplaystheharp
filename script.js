@@ -18,7 +18,7 @@ const LINKS = {
 
   // Repertoire is a downloadable PDF — point this at the actual file, e.g.
   // "documents/repertoire.pdf" if you add the PDF to this repository.
-  repertoire: "https://example.com/repertoire.pdf",
+  repertoire: "Sabrina Savenkova | Repertoire.pdf",
 
   // Fallback link straight to your Google Business profile/reviews page —
   // find this via your Business Profile dashboard ("Ask for reviews" gives
@@ -26,9 +26,9 @@ const LINKS = {
   googleReviews: "https://share.google/kv2IQTasmp8moK71k",
 
   // Social media — replace with your real profile URLs
-  youtube: "https://www.youtube.com/@your-channel",
-  instagram: "https://www.instagram.com/your-profile",
-  facebook: "https://www.facebook.com/your-page",
+  youtube: "https://www.youtube.com/@sabrinasavenkova",
+  instagram: "https://www.instagram.com/sabrinaplaystheharp",
+  facebook: "https://www.facebook.com/people/Sabrina-Savenkova/pfbid0LMqNtncb9Whw3mVeXuRnhWHqV4EB4iCg3orbGdFkr6SSoFxeigvigN9it5kZyihFl/",
 };
 
 document.querySelectorAll("[data-link]").forEach((el) => {

@@ -18,7 +18,7 @@ const LINKS = {
 
   // Repertoire is a downloadable PDF — point this at the actual file, e.g.
   // "documents/repertoire.pdf" if you add the PDF to this repository.
-  repertoire: "sabrina-savenkova-repertoire.pdf",
+  repertoire: "sabrina-savenkova-repertoire",
 
   // Fallback link straight to your Google Business profile/reviews page —
   // find this via your Business Profile dashboard ("Ask for reviews" gives

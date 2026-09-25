@@ -20,14 +20,14 @@
    ========================================================================= */
 
 :root {
-  --ink: #14161a;
-  --surface: #1d2024;
-  --surface-2: #23262b;
-  --ivory: #ede8df;
-  --stone: #9c978c;
-  --brass: #c9a24b;
-  --brass-deep: #8b6f2e;
-  --brass-soft: rgba(201, 162, 75, 0.35);
+  --ink: #FAF6EE;              /* was #14161A — main page background, now warm ivory-white */
+  --surface: #F3ECDF;          /* was #1D2024 — panels: audio player, form fields, More menu, now cream */
+  --surface-2: #ECE2D1;        /* was #23262B — secondary panel tier, deeper cream */
+  --ivory: #3A2E22;            /* was #EDE8DF — main text colour, now deep hazel/umber (renamed role: was light-on-dark, now dark-on-light) */
+  --stone: #7A6F60;            /* was #9C978C — muted/secondary text, warm grey */
+  --brass: #B8862F;            /* was #C9A24B — accent: links, underlines, icons, borders, now richer gold */
+  --brass-deep: #8C6423;       /* was #8B6F2E — darker accent, button hover state */
+  --brass-soft: rgba(184, 134, 47, 0.35); /* was rgba(201,162,75,0.35) — kept same alpha, updated to match new gold */
 
   --display: "Cormorant Garamond", Georgia, serif;
   --body: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;

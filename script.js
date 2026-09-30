@@ -14,11 +14,14 @@ const LINKS = {
   // GitHub Pages page in this same repository, e.g. "recordings.html")
   recordings: "https://example.com/recordings",   // used by More > Recordings and "Listen to more"
   gallery: "https://example.com/gallery",          // used by More > Gallery
-  biography: "https://example.com/biography",      // used by More > Biography and "Read more about me"
+  biography: "/biography/",      // used by More > Biography and "Read more about me"
 
   // Repertoire is a downloadable PDF — point this at the actual file, e.g.
   // "documents/repertoire.pdf" if you add the PDF to this repository.
-  repertoire: "documents/sabrina-savenkova-repertoire.pdf",
+  // Absolute path (leading "/") so this resolves correctly from any page,
+  // including biography/index.html which sits one folder below the root —
+  // a relative path like "documents/..." would break there.
+  repertoire: "/documents/sabrina-savenkova-repertoire.pdf",
 
   // Fallback link straight to your Google Business profile/reviews page —
   // find this via your Business Profile dashboard ("Ask for reviews" gives
@@ -155,9 +158,14 @@ navLinkEls.forEach((a) =>
    5. "ENQUIRE NOW" BUTTON — scrolls to Contact, heading stays clear of
    the sticky nav thanks to the scroll-margin-top set in style.css.
    ------------------------------------------------------------------------- */
-document.getElementById("enquireBtn").addEventListener("click", () => {
-  document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
-});
+// Guarded: enquireBtn only exists on index.html, not on standalone pages
+// like biography/index.html, so check before attaching the listener.
+const enquireBtn = document.getElementById("enquireBtn");
+if (enquireBtn) {
+  enquireBtn.addEventListener("click", () => {
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+  });
+}
 
 /* -------------------------------------------------------------------------
    6. FAQ ACCORDION
@@ -174,6 +182,9 @@ document.querySelectorAll(".accordion__trigger").forEach((trigger) => {
 
 /* -------------------------------------------------------------------------
    7. CONTACT FORM — Formspree, async submission, validation, status message
+   Guarded: the contact form only exists on index.html. Standalone pages
+   like biography/index.html have a simple contact block instead, so this
+   whole section is skipped there rather than throwing on a missing form.
    ------------------------------------------------------------------------- */
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
@@ -214,49 +225,52 @@ function validateForm(data) {
   return isValid;
 }
 
-contactForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
+if (contactForm) {
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const formData = new FormData(contactForm);
-  formStatus.textContent = "";
-  formStatus.className = "form-status";
+    const formData = new FormData(contactForm);
+    formStatus.textContent = "";
+    formStatus.className = "form-status";
 
-  if (!validateForm(formData)) {
-    formStatus.textContent = "Please fix the highlighted fields and try again.";
-    formStatus.classList.add("error");
-    return;
-  }
-
-  const submitBtn = document.getElementById("submitBtn");
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Sending…";
-
-  try {
-    // NOTE: the endpoint URL itself is set on the <form action="..."> in
-    // index.html — replace YOUR_FORM_ID there with your real Formspree ID.
-    const response = await fetch(contactForm.action, {
-      method: "POST",
-      body: formData,
-      headers: { Accept: "application/json" },
-    });
-
-    if (response.ok) {
-      formStatus.textContent = "Thank you — your message has been sent! I'll be in touch soon.";
-      formStatus.classList.add("success");
-      contactForm.reset();
-    } else {
-      throw new Error("Formspree responded with an error.");
+    if (!validateForm(formData)) {
+      formStatus.textContent = "Please fix the highlighted fields and try again.";
+      formStatus.classList.add("error");
+      return;
     }
-  } catch (err) {
-    formStatus.textContent = "Something went wrong sending your message. Please try again, or email me directly.";
-    formStatus.classList.add("error");
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = "Send Message";
-  }
-});
+
+    const submitBtn = document.getElementById("submitBtn");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+
+    try {
+      // NOTE: the endpoint URL itself is set on the <form action="..."> in
+      // index.html — replace YOUR_FORM_ID there with your real Formspree ID.
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        formStatus.textContent = "Thank you — your message has been sent! I'll be in touch soon.";
+        formStatus.classList.add("success");
+        contactForm.reset();
+      } else {
+        throw new Error("Formspree responded with an error.");
+      }
+    } catch (err) {
+      formStatus.textContent = "Something went wrong sending your message. Please try again, or email me directly.";
+      formStatus.classList.add("error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send Message";
+    }
+  });
+}
 
 /* -------------------------------------------------------------------------
    8. FOOTER YEAR
    ------------------------------------------------------------------------- */
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();

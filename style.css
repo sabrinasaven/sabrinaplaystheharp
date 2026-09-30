@@ -343,11 +343,12 @@ a.has-download {
   row-gap: 32px;
   align-items: center;
 }
-.weddings__title,
+/* Only the audio block spans full width now — the title moved inside
+   .weddings__summary (see index.html) so it sits level with the image on
+   the same row, matching the About/Teaching split layout. */
 .weddings__audio {
   grid-column: 1 / -1;
 }
-.weddings__title { align-self: start; }
 
 .split__media img,
 .weddings__media img {
@@ -660,22 +661,27 @@ a.has-download {
 
 /* =========================================================================
    BIOGRAPHY PAGE (biography/index.html)
-   Headshot floats right of the body copy; text wraps around it, then runs
-   full width once the copy passes the image's height. Stacks vertically
-   on mobile — see the .bio__photo override inside the 900px media query.
+   Title and headshot sit side by side in a header row; body copy runs
+   full width underneath, ending with an italic sign-off line. On mobile,
+   the photo drops below the title (see the 900px media query below).
    ========================================================================= */
 .section--bio { padding-top: 72px; }
 
-.section--bio h1 {
+.bio__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+.bio__header h1 {
   font-size: clamp(2.2rem, 4.5vw, 3rem);
-  margin-bottom: 0.6em;
+  margin: 0;
 }
 
 .bio__photo {
-  float: right;
-  width: 320px;
-  max-width: 42%;
-  margin: 6px 0 24px 40px;
+  flex-shrink: 0;
+  width: 240px;
 }
 .bio__photo img {
   width: 100%;
@@ -685,26 +691,11 @@ a.has-download {
   border-radius: var(--radius);
 }
 
-/* Clears the float once the wrapped copy is done, so anything after this
-   (e.g. the Contact block below) always starts full-width regardless of
-   how tall the photo is relative to the text beside it. */
-.bio__clear { clear: both; }
-
-/* --- Simple contact block — biography page only, distinct from the main
-   Contact section's form on index.html. Just name / phone / email. --- */
-.contact-simple {
-  max-width: 480px;
-  margin: 0 auto;
-  text-align: center;
-}
-.contact-simple p {
-  margin: 0 0 12px;
-  font-size: 1.05rem;
-}
-.contact-simple strong {
-  color: var(--brass);
-  font-weight: 500;
-  margin-right: 8px;
+/* Italic continuation line at the end of the biography copy */
+.bio__sign-off {
+  font-style: italic;
+  color: var(--stone);
+  margin-top: 8px;
 }
 
 /* --- Back-to-top shortcut --- */
@@ -794,13 +785,15 @@ a.has-download {
     gap: 10px;
   }
 
-  /* Biography page: unfloat the headshot and stack it above the text,
-     same pattern as About/Teaching above */
+  /* Biography page: stack title above photo instead of side by side */
+  .bio__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
   .bio__photo {
-    float: none;
     width: 100%;
-    max-width: 320px;
-    margin: 0 auto 32px;
+    max-width: 280px;
   }
 }
 

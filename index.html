@@ -223,20 +223,20 @@
        WEDDINGS & EVENTS
        ===================================================================== -->
   <section id="weddings" class="section weddings-layout">
-    <!-- Title: always first, both on desktop and mobile -->
-    <div class="weddings__title">
-      <p class="eyebrow">Weddings &amp; Events</p>
-      <h2>Harpist for Hire</h2>
-    </div>
-
     <!--
-      Summary wrapper: on desktop this stays intact as the left column, so
-      its contents (text, Enquire button, Repertoire link, FAQ link) simply
-      stack in that order. On mobile it "dissolves" (display: contents in
-      style.css) so each piece inside can be given its own position in the
-      Image → Text → Repertoire → Audio → Enquire → FAQ mobile order.
+      Summary wrapper: on desktop this stays intact as the left column, with
+      the title as its first item so it starts level with the image on the
+      right (same pattern as the About/Teaching split sections). On mobile
+      it "dissolves" (display: contents in style.css) so each piece inside
+      can be given its own position in the Title → Image → Text →
+      Repertoire → Audio → Enquire → FAQ mobile order.
     -->
     <div class="weddings__summary">
+      <div class="weddings__title">
+        <p class="eyebrow">Weddings &amp; Events</p>
+        <h2>Weddings &amp; Events</h2>
+      </div>
+
       <div class="weddings__text">
         <p>
           Music has the ability to transform a moment — creating atmosphere, emotion, and lasting
@@ -265,7 +265,7 @@
       <a href="#questions" class="text-link" id="weddingsFaqLink">Frequently Asked Questions →</a>
     </div>
 
-    <!-- Image: right column on desktop, second on mobile (right after the title) -->
+    <!-- Image: right column on desktop, level with the title; second on mobile (right after the title) -->
     <div class="weddings__media">
       <!-- REPLACE ME: image of a wedding or event performance -->
       <img src="images/weddings-placeholder.jpg" alt="Sabrina Savenkova performing at a wedding" loading="lazy" width="900" height="1200">
@@ -426,7 +426,7 @@
     </div>
 
     <!-- Edit this note freely, or remove the tag entirely if you don't want it -->
-    <p class="faq-note"><em>Don't see your question here? Please get in touch and I'll be happy to help.</em></p>
+    <p class="faq-note"><em>Don't see your question here? Get in touch and I'll be happy to help.</em></p>
   </section>
 
   <!-- =====================================================================

@@ -661,27 +661,25 @@ a.has-download {
 
 /* =========================================================================
    BIOGRAPHY PAGE (biography/index.html)
-   Title and headshot sit side by side in a header row; body copy runs
-   full width underneath, ending with an italic sign-off line. On mobile,
-   the photo drops below the title (see the 900px media query below).
+   Title sits full width above. The headshot floats right of the body copy,
+   so paragraphs wrap around it on the left; once the copy passes the
+   photo's bottom, it fills the full page width again. The sign-off line
+   uses clear:both so it's guaranteed to sit full width regardless of how
+   long the paragraphs above run. On mobile, the photo unfloats and sits
+   full width above the text (see the 900px media query below).
    ========================================================================= */
 .section--bio { padding-top: 72px; }
 
-.bio__header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 40px;
-  margin-bottom: 32px;
-}
-.bio__header h1 {
+.section--bio h1 {
   font-size: clamp(2.2rem, 4.5vw, 3rem);
-  margin: 0;
+  margin-bottom: 0.6em;
 }
 
 .bio__photo {
-  flex-shrink: 0;
-  width: 240px;
+  float: right;
+  width: 300px;
+  max-width: 42%;
+  margin: 0 0 24px 40px;
 }
 .bio__photo img {
   width: 100%;
@@ -691,8 +689,10 @@ a.has-download {
   border-radius: var(--radius);
 }
 
-/* Italic continuation line at the end of the biography copy */
+/* Italic continuation line at the end of the biography copy — clear:both
+   guarantees it (and anything after it) sits full width past the photo. */
 .bio__sign-off {
+  clear: both;
   font-style: italic;
   color: var(--stone);
   margin-top: 8px;
@@ -785,15 +785,13 @@ a.has-download {
     gap: 10px;
   }
 
-  /* Biography page: stack title above photo instead of side by side */
-  .bio__header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-  }
+  /* Biography page: unfloat the photo and stack it full width above the
+     text, rather than wrapping the copy around it on a narrow screen */
   .bio__photo {
+    float: none;
     width: 100%;
     max-width: 280px;
+    margin: 0 auto 24px;
   }
 }
 

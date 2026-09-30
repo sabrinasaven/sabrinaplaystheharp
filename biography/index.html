@@ -91,22 +91,25 @@
 
   <!-- =====================================================================
        BIOGRAPHY
-       Title sits full-width first. The headshot then floats right of the
-       body copy so the text wraps around it, and continues full-width
-       once the copy runs past the photo (see .bio__clear below).
+       Title and headshot sit side by side on the same row on desktop; the
+       photo drops below the title on mobile (see .bio__header in the
+       900px media query). Body copy runs full width underneath both,
+       ending with an italic contact line as part of the same section.
        ===================================================================== -->
   <section class="section section--bio" id="biography">
-    <p class="eyebrow">Biography</p>
-    <h1>Biography</h1>
+    <div class="bio__header">
+      <h1>Biography</h1>
 
-    <!--
-      REPLACE ME: add a dedicated headshot (portrait 4:3, e.g. 900x1200px,
-      same ratio as the other placeholder photos) — e.g.
-      images/biography-headshot.jpg. Using the existing About photo here
-      as a placeholder so the layout isn't broken before you add one.
-    -->
-    <div class="bio__photo">
-      <img src="../images/about-placeholder.JPG" alt="Portrait of Sabrina Savenkova" loading="lazy" width="900" height="1200">
+      <!--
+        REPLACE ME: swap in your real headshot at the same filename
+        (images/biography-placeholder.jpg), or change the src below to a
+        differently-named file — either way this is a dedicated image,
+        separate from the About section's photo, so updating it here
+        never affects the main page. Portrait 3:4 (e.g. 900x1200px).
+      -->
+      <div class="bio__photo">
+        <img src="../images/biography-placeholder.jpg" alt="Portrait of Sabrina Savenkova" loading="lazy" width="900" height="1200">
+      </div>
     </div>
 
     <!--
@@ -134,19 +137,15 @@
       examinations, auditions, or simply learning for enjoyment.
     </p>
 
-    <div class="bio__clear"></div>
-  </section>
-
-  <!-- =====================================================================
-       CONTACT — simple details, distinct from the form on index.html
-       ===================================================================== -->
-  <section class="section section--contact-simple" id="biography-contact">
-    <h2 class="section-heading--center">Contact</h2>
-    <div class="contact-simple">
-      <p><strong>Name:</strong> Sabrina Savenkova</p>
-      <p><strong>Phone:</strong> <a href="tel:+447305660180">0 7305 660 180</a></p>
-      <p><strong>Email:</strong> <a href="mailto:sabrinasavenkova.harp@gmail.com">sabrinasavenkova.harp@gmail.com</a></p>
-    </div>
+    <!--
+      Note: the phone number below is written exactly as given
+      ("0 7205 660 180"), which differs from the "0 7305 660 180" used
+      in the main Contact section on index.html — flagging this in case
+      it's a typo rather than a second, deliberate number.
+    -->
+    <p class="bio__sign-off">
+      Sabrina currently lives in London. You can reach her at E: <a href="mailto:sabrinasavenkova.harp@gmail.com">sabrinasavenkova.harp@gmail.com</a> or M: <a href="tel:+447205660180">0 7205 660 180</a>.
+    </p>
   </section>
 
 </main>

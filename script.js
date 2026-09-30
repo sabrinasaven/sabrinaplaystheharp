@@ -45,6 +45,9 @@ document.querySelectorAll("[data-link]").forEach((el) => {
     // Note: browsers only honour `download` for same-origin files, so this
     // works best once the PDF lives inside this repository.
     el.setAttribute("download", "");
+  } else if (key === "biography") {
+    // Biography is a same-site page (biography/index.html), not an
+    // external destination, so it should open in the current tab.
   } else {
     // Every other "More" destination is treated as an external page.
     el.setAttribute("target", "_blank");

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biography | Sabrina Savenkova, Harpist</title>
+<meta name="description" content="Read the full biography of Sabrina Savenkova — London-based professional harpist performing as an orchestral, chamber, and solo musician.">
+<link rel="canonical" href="https://sabrinasavenkova.co.uk/biography/">
+
+<!--
+  =====================================================================
+  FONTS — same as index.html
+  =====================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!--
+  This page lives one folder down from the site root (/biography/index.html),
+  so the shared stylesheet, script, and images are all referenced with a
+  "../" prefix to reach the repo root. If you move this page, update these.
+-->
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<!-- Anchor for the "back to top" shortcut — placed before the sticky
+     header so scrolling to it clears the header/nav automatically. -->
+<div id="top"></div>
+
+<!-- =====================================================================
+     SITE HEADER — identical markup to index.html
+     ===================================================================== -->
+<div class="site-header">
+  <div class="site-header__brand">
+    <span class="site-header__name">Sabrina Savenkova</span>
+    <span class="site-header__divider" aria-hidden="true">|</span>
+    <span class="site-header__role">Harpist</span>
+  </div>
+
+  <button class="nav__hamburger" id="navHamburger" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<!-- =====================================================================
+     STICKY NAVIGATION
+     Primary links point back to index.html and its in-page sections,
+     since this page (biography/index.html) is a separate document. The
+     More menu's Recordings/Gallery/Repertoire/Reviews behave the same way
+     as on index.html (Reviews is an index.html section; Recordings,
+     Gallery and Repertoire are set once in script.js's LINKS object, so
+     they don't need a path prefix here).
+     ===================================================================== -->
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Primary">
+    <ul class="nav__links" id="navLinks">
+      <li><a href="../index.html#home">Home</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#listen">Listen</a></li>
+      <li><a href="../index.html#weddings">Weddings &amp; Events</a></li>
+      <li><a href="../index.html#teaching">Teaching</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+
+      <li class="nav__more">
+        <button class="nav__more-btn" id="moreBtn" aria-haspopup="true" aria-expanded="false" aria-controls="moreMenu">
+          More <span class="nav__caret" aria-hidden="true">▾</span>
+        </button>
+        <ul class="nav__more-menu" id="moreMenu" role="menu">
+          <li role="none"><a role="menuitem" href="#" data-link="recordings">Recordings</a></li>
+          <li role="none"><a role="menuitem" href="#" data-link="gallery">Gallery</a></li>
+          <!-- Already on this page — marked active rather than linked to itself -->
+          <li role="none"><a role="menuitem" href="#" class="is-active" aria-current="page">Biography</a></li>
+          <li role="none">
+            <a role="menuitem" href="#" data-link="repertoire" class="has-download">
+              Repertoire
+              <svg class="download-icon" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false">
+                <path d="M12 3v11.5m0 0l-4.5-4.5M12 14.5l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </li>
+          <li role="none"><a role="menuitem" href="../index.html#reviews">Reviews</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+  <!-- =====================================================================
+       BIOGRAPHY
+       Title sits full-width first. The headshot then floats right of the
+       body copy so the text wraps around it, and continues full-width
+       once the copy runs past the photo (see .bio__clear below).
+       ===================================================================== -->
+  <section class="section section--bio" id="biography">
+    <p class="eyebrow">Biography</p>
+    <h1>Biography</h1>
+
+    <!--
+      REPLACE ME: add a dedicated headshot (portrait 4:3, e.g. 900x1200px,
+      same ratio as the other placeholder photos) — e.g.
+      images/biography-headshot.jpg. Using the existing About photo here
+      as a placeholder so the layout isn't broken before you add one.
+    -->
+    <div class="bio__photo">
+      <img src="../images/about-placeholder.JPG" alt="Portrait of Sabrina Savenkova" loading="lazy" width="900" height="1200">
+    </div>
+
+    <!--
+      REPLACE ME: this is placeholder biography copy, expanded from the
+      About section's text as a starting point — edit freely with the
+      full version you want published here.
+    -->
+    <p>
+      Harpist Sabrina Savenkova is a graduate of the Guildhall School of Music &amp; Drama, where she
+      studied under Keziah Thomas, and of Chetham's School of Music. She performs widely as an
+      orchestral, chamber, and solo musician in concert halls, churches, and private venues across
+      the country.
+    </p>
+    <p>
+      Her playing is known for its warmth, poise, and expressive sensitivity, whether in a full
+      orchestral setting or an intimate solo performance. Alongside the core classical repertoire,
+      Sabrina has a particular interest in contemporary and cross-genre work: she regularly
+      premieres new pieces written for the harp, and has collaborated on performances that bring
+      the instrument into dialogue with theatre and poetry.
+    </p>
+    <p>
+      Sabrina is a versatile performer for weddings, corporate functions, and private celebrations,
+      drawing on a repertoire that spans Classical, Film Music, Jazz, and Contemporary pieces, and
+      she is equally at home teaching, offering private tuition to students preparing for graded
+      examinations, auditions, or simply learning for enjoyment.
+    </p>
+
+    <div class="bio__clear"></div>
+  </section>
+
+  <!-- =====================================================================
+       CONTACT — simple details, distinct from the form on index.html
+       ===================================================================== -->
+  <section class="section section--contact-simple" id="biography-contact">
+    <h2 class="section-heading--center">Contact</h2>
+    <div class="contact-simple">
+      <p><strong>Name:</strong> Sabrina Savenkova</p>
+      <p><strong>Phone:</strong> <a href="tel:+447305660180">0 7305 660 180</a></p>
+      <p><strong>Email:</strong> <a href="mailto:sabrinasavenkova.harp@gmail.com">sabrinasavenkova.harp@gmail.com</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© <span id="year"></span> Sabrina Savenkova. All rights reserved.</p>
+</footer>
+
+<!-- Back to top — plain anchor link, no JS required, so it can't break -->
+<a href="#top" class="back-to-top" aria-label="Back to top of page">↑</a>
+
+<script src="../script.js"></script>
+</body>
+</html>

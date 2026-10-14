@@ -20,9 +20,9 @@ Structured data bug fixed — found the cause of Google Search Console's
 "incorrect value type" warning: `alumniOf` had two schools crammed into a
 single organization's `name` as a list, but schema.org's `name` property
 only accepts one value. Fixed by giving each school its own object.
-
 New Reviews section — added below the FAQ section, with a nav entry
 in the More menu (see "Reviews" below for what to paste in).
+
 Important: syncing with the GitHub repo — `index.html` in this
 delivery is now based on the live version from your GitHub repo (real
 video, real contact details, finalized FAQ content, etc.), not an older
@@ -35,12 +35,14 @@ directly on GitHub beyond what's reflected in `index.html`, they won't
 be reflected here — let me know and I'll incorporate them.
 
 Previously
+
 SEO: sitemap, robots.txt, and structured data — added `sitemap.xml`
 and `robots.txt` to help search engines discover and crawl the site, plus
 JSON-LD structured data in `index.html`'s `<head>` identifying Sabrina as
 a person/harpist/teacher. This is what can help a Google search for her
 name show a richer result rather than a plain link. See "SEO files" below
 for what to update once real details (photo, socials) are finalized.
+
 Social icons — official logo files — the site now uses the actual
 official brand logo files (Instagram's gradient glyph, Facebook's primary
 logo, YouTube's icon) instead of custom-drawn icons. Each `<img>` is fixed
@@ -49,13 +51,16 @@ or aspect ratio, so any logo file you drop in — square, circular, or a
 wide rectangle like YouTube's — automatically fits the same space with no
 cropping or distortion. See "Social icons" below for exactly what to
 replace and how.
+
 FAQ text color — the question titles now use the same grey as the
 answers (previously questions were a lighter off-white, answers grey —
 inconsistent). Everything in the accordion is grey by default now
 (hover still highlights in brass).
+
 FAQ paragraph spacing — if an answer has more than one paragraph,
 the gap between paragraphs within that answer is now tighter; the larger
 gap is reserved for the space before the next question.
+
 Hero image gaps (actual fix) — removed the forced CSS `aspect-ratio`
 box and `object-fit` on the hero image entirely. It previously created a
 separate 4:3 "frame" that the browser had to reconcile the photo against
@@ -64,21 +69,27 @@ color, so they were easy to mistake for layout gaps rather than
 letterboxing). The image now just displays at its own natural size, full
 width. Since your photo is already exactly 4:3, it renders at that exact
 ratio, edge-to-edge, directly under the nav bar — no gaps, no cropping.
+
 Hero image (mobile fix) — fixed a bug where a mobile CSS rule was
 unintentionally re-adding side padding to the hero section.
+
 Weddings & Events — mobile order — Image → Text → View my full
 repertoire → Audio → Enquire Now → Frequently Asked Questions, with
 tighter spacing between Text/Repertoire and between Enquire/FAQ/Audio.
 Mobile header — the hamburger menu button sits in the same row as
 "Sabrina Savenkova | Harpist", aligned to the right of the title.
+
 Weddings & Events — desktop — the "Frequently Asked Questions" link
 sits directly below "View my full repertoire" in the left-hand column.
 Repertoire link — the arrow (→) has been removed; only the download
 icon appears next to "View my full repertoire" now.
+
 Color customization guide — see below.
 
 What to replace before going live
-1. Images
+
+Images
+
 Every placeholder photo lives in `images/` and is clearly marked in
 `index.html` with a `REPLACE ME` comment just above the `<img>` tag:
 `hero-placeholder.JPG` — Home section hero photo. Displays at its natural
@@ -91,7 +102,9 @@ multiple of that ratio) so it renders at exactly that ratio.
 Keep your replacement photos in the ratio noted above for each one so they
 display cleanly without cropping or letterboxing. Just save your own photo
 with the same filename (or update the `src`).
-2. Social icons
+
+Social icons
+
 The Socials section (`#socials` in `index.html`) currently uses the official
 brand logo files:
 `images/yt_icon_red_digital.png` — YouTube
@@ -105,18 +118,22 @@ fixed 48×48 box (`.social-icon img` in `style.css`) regardless of the file's
 native resolution or aspect ratio, so square icons, circular icons, and wide
 rectangles (like YouTube's) all fit the same space automatically, with no
 cropping or stretching.
-3. Video (Listen section)
+
+Video (Listen section)
+
 Open `index.html`, find the `<iframe>` inside `#listen`, and replace
 `REPLACE_WITH_VIDEO_ID` with your own YouTube/Vimeo embed — or swap the
 `<iframe>` for a `<video>` tag pointing at a file in `video/` (an example is
 commented directly above it).
-4. Audio (Weddings & Events section)
+
+Audio (Weddings & Events section)
 Replace `audio/wedding-sample-placeholder.mp3` with your own track, and
 update the piece name / artist / arranger text next to it. This block
 (`.weddings__audio` in `index.html`) spans the full section width on
 desktop, and sits fifth on mobile (after the repertoire link, before
 Enquire Now).
-5. Links — all set in one place
+
+Links — all set in one place
 Open `script.js` and edit the `LINKS` object at the top of the file:
 ```js
 const LINKS = {
@@ -132,6 +149,7 @@ const LINKS = {
 Each URL automatically applies everywhere it's used — for example,
 `biography` updates both the "Biography" link in the More menu and the
 "Read more about me" link in the About section.
+
 Repertoire is treated as a downloadable PDF: script.js adds a `download`
 attribute to every link pointing at it (in the More menu and the "View my
 full repertoire" link), and a small download icon appears next to both (no
@@ -140,25 +158,49 @@ site, so for a real download prompt, add your PDF into this repository (e.g.
 in a `documents/` folder) and point `repertoire` at that path rather than an
 external URL.
 
-6. Contact form (Formspree)
-Create a form at formspree.io and copy your
-endpoint URL.
-In `index.html`, find `<form id="contactForm" ... action="https://formspree.io/f/YOUR_FORM_ID">`
-and replace `YOUR_FORM_ID` with your real endpoint.
+Contact form (Gmail via Google Apps Script)
+
+The form posts to a small Google Apps Script web app that emails
+sabrinasavenkova.harp@gmail.com through Gmail. No password or key is stored on
+the website. The receiving code is in `apps-script/Code.gs` (reference copy
+only, not served by the site). One-off setup, signed in as the Gmail account:
+Go to script.google.com, click New project, delete the sample code, and
+paste in the contents of `apps-script/Code.gs`. Save.
+
+In the editor choose the `testSend` function and click Run. Accept the
+permission prompt. A test email should arrive in the inbox.
+
+Deploy > New deployment > type: Web app. Set "Execute as" to Me and
+"Who has access" to Anyone. Deploy and copy the Web app URL (ends `/exec`).
+
+In `script.js`, replace `PASTE_APPS_SCRIPT_WEB_APP_URL_HERE` in
+`CONTACT_ENDPOINT` with that URL. Commit and push.
+
+Submit a test message on the live site and check it arrives, and that
+Reply goes to the sender.
+
+If `Code.gs` is edited later, use Deploy > Manage deployments > Edit > New
+version, otherwise the live URL keeps running the old code.
+Consumer Gmail accounts can send roughly 100 emails per day through Apps
+Script, which is ample for an enquiry form. A hidden honeypot field (`website`)
+filters most spam bots.
+
 The form submits asynchronously (no page reload), validates the required
 fields, and shows a success or error message beneath the Send button.
+FAQ content
 
-7. FAQ content
 The five placeholder questions in the Questions section (`#questions` in
 `index.html`) can be edited freely — just change the text inside each
 `.accordion__trigger` and its matching `.accordion__panel`.
+
 There's also a short italic note below the accordion:
 ```html
 <p class="faq-note"><em>Don't see your question here? Get in touch and I'll be happy to help.</em></p>
 ```
 Edit the text freely, or delete the whole `<p>` if you don't want it.
 
-8. SEO files
+SEO files
+
 Three things help search engines find and understand the site:
 `sitemap.xml` (repo root) — lists the site's URL for search engines to
 crawl. Since this is a single-page site, it only needs one entry. If you
@@ -169,18 +211,20 @@ crawl the whole site, and points them to the sitemap.
 Structured data — a `<script type="application/ld+json">` block in
 `index.html`'s `<head>` identifying Sabrina as a person/harpist/teacher.
 This is what can help a Google search for her name show a richer result.
+
 Update these fields once real details are finalized:
 `"image"` — point at your real hero photo once uploaded
 `"sameAs"` — update to your real YouTube/Instagram/Facebook URLs (keep
 these matching the `LINKS` object in `script.js`)
 `"description"` — tweak if your services change
+
 Once live: submit `sitemap.xml` in Google Search Console
 and Bing Webmaster Tools — this is what
 actually gets the site crawled quickly, rather than waiting for it to be
 found naturally. Both files and the structured data only help search engines
 find and understand the page; they don't guarantee a ranking position.
+Reviews
 
-9. Reviews
 The Reviews section (`#reviews` in `index.html`) sits directly below the FAQ
 section, with its own entry in the More menu. Right now it's a placeholder
 box (`.google-reviews-embed`) — Google doesn't offer a simple native embed
@@ -191,6 +235,7 @@ options with a free tier: EmbedSocial, Elfsight, and Trustindex — search
 for "Google reviews widget" plus whichever one you choose, connect your
 Google Business Profile, and paste the snippet it gives you in place of the
 placeholder `<div>`.
+
 There's also a fallback text link, "View all reviews on Google", which
 points to `LINKS.googleReviews` in `script.js` — update that to your real
 Google Business profile/review link (find it via your Business Profile
@@ -208,9 +253,7 @@ FAQ link
 About / Teaching
 Desktop: Image + text side by side (unchanged)
 Mobile: text first, image below
-
 Changing the background and text colors
-
 All colors are defined once, at the very top of `style.css`, as CSS custom
 properties (variables) inside `:root`:
 ```css
@@ -240,6 +283,7 @@ You don't need to touch anything else in the file — every background,
 heading, link, button, and border pulls its color from these six variables.
 
 Publishing to GitHub Pages
+
 Push these files to a GitHub repository.
 In the repository settings, open Pages, and set the source to your
 main branch (root folder).

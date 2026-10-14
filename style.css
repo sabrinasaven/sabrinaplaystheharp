@@ -659,6 +659,15 @@ a.has-download {
 }
 /* Uses whichever brand logo files are referenced in index.html as-is */
 
+/* Contact form honeypot: off-screen rather than display:none, so bots still see it */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* =========================================================================
    BIOGRAPHY PAGE (biography/index.html)
    Title sits full width above. The headshot floats right of the body copy,

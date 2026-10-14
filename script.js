@@ -184,11 +184,16 @@ document.querySelectorAll(".accordion__trigger").forEach((trigger) => {
 });
 
 /* -------------------------------------------------------------------------
-   7. CONTACT FORM — Formspree, async submission, validation, status message
+   7. CONTACT FORM: async submission to a Google Apps Script web app that
+   emails the message via Gmail, with validation and a status message
    Guarded: the contact form only exists on index.html. Standalone pages
    like biography/index.html have a simple contact block instead, so this
    whole section is skipped there rather than throwing on a missing form.
    ------------------------------------------------------------------------- */
+// Paste the Apps Script web app URL here after deploying apps-script/Code.gs
+// (it ends in /exec). See README.md, "Contact form".
+const CONTACT_ENDPOINT = "PASTE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
 
@@ -247,20 +252,24 @@ if (contactForm) {
     submitBtn.textContent = "Sending…";
 
     try {
-      // NOTE: the endpoint URL itself is set on the <form action="..."> in
-      // index.html — replace YOUR_FORM_ID there with your real Formspree ID.
-      const response = await fetch(contactForm.action, {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
+      if (!CONTACT_ENDPOINT.startsWith("https://")) {
+        throw new Error("Contact endpoint not configured.");
+      }
 
-      if (response.ok) {
-        formStatus.textContent = "Thank you — your message has been sent! I'll be in touch soon.";
+      // URL-encoded body keeps this a "simple" request (no CORS preflight),
+      // which Apps Script web apps require.
+      const response = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        body: new URLSearchParams(formData),
+      });
+      const result = await response.json();
+
+      if (result.result === "success") {
+        formStatus.textContent = "Thank you, your message has been sent! I'll be in touch soon.";
         formStatus.classList.add("success");
         contactForm.reset();
       } else {
-        throw new Error("Formspree responded with an error.");
+        throw new Error(result.error || "Send failed.");
       }
     } catch (err) {
       formStatus.textContent = "Something went wrong sending your message. Please try again, or email me directly.";

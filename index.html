@@ -336,13 +336,20 @@
 
         <!--
           =============================================================
-          CONTACT FORM — Formspree integration
-          1. Create a form at https://formspree.io and copy your endpoint.
-          2. Replace YOUR_FORM_ID below with your endpoint's ID.
-          3. Submission is handled asynchronously in script.js (no page reload).
+          CONTACT FORM: sends via a Google Apps Script web app that
+          emails sabrinasavenkova.harp@gmail.com through Gmail.
+          The endpoint URL is set in script.js (CONTACT_ENDPOINT), not here.
+          Setup steps are in README.md ("Contact form") and the receiving
+          code is in apps-script/Code.gs.
           =============================================================
         -->
-        <form id="contactForm" class="contact-form" action="https://formspree.io/f/mykvbzrk" method="POST" novalidate>
+        <form id="contactForm" class="contact-form" novalidate>
+          <!-- Honeypot: hidden from people, bots tend to fill it in. Do not remove. -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">Leave this field empty</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
           <div class="field">
             <label for="name">Name <span aria-hidden="true">*</span></label>
             <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name">

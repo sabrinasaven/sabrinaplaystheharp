@@ -192,7 +192,7 @@ document.querySelectorAll(".accordion__trigger").forEach((trigger) => {
    ------------------------------------------------------------------------- */
 // Paste the Apps Script web app URL here after deploying apps-script/Code.gs
 // (it ends in /exec). See README.md, "Contact form".
-const CONTACT_ENDPOINT = "PASTE_APPS_SCRIPT_WEB_APP_URL_HERE";
+const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbxIYR4iezAC7M_BUwHTH-Fw52Cl4v6CaS7wsDcqF8P5PXWDOGsPQkqGDi51K3-2tcAp/exec";
 
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
